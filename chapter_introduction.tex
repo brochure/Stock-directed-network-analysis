@@ -1,0 +1,86 @@
+\chapter{Introduction}
+\section{Motivation}
+Financial markets are complex systems, the interconnectedness and interdepen- dencies of industry sectors in the economy are highly inter-coupled with strong correlations with stock price fluctuations, i.e., the price returns of each coupling stocks underlying certain economic link, e.g. two companies that manufacture similar products, or both in one supply chain. Such behaviours can hardly be explained by traditional financial models and theories.
+
+During recent times, weighted but undirected complex network models have been applied to study the correlations of stock prices. Prevailing approach is using companies as nodes, and correlations between each pair of stock price series, return series, or fluctuation patterns as links, e.g., much of the previous research have proved the represented complex networks of worldwide stock mar- kets are scale-free and small-world [1, 2].
+
+Theoretically, directed complex network for stock market can be achieved there- fore more potential information can be produced which is helpful for invest- ment decision and financial market supervision. Conducting Granger causality test between stock pairs is straightforward but not feasible due to the heavy- precondition and time-complexity in programme. Compared to the large order of magnitude of total stock pairs, manually calculated Granger causalities are too less to be used as training samples. Enlightened by the recent work by Jean et al. [3] which uses transfer learning and noisy proxy information per- formed very well at predicting poverties, demonstrating that machine learning techniques is powerful to be applied in a setting with limited training data, so an exploration towards the directed network of stock market is motivated in this project, combines machine learning techniques, transfer learning, individual stock features, and empirical data of Industry Economic Accounts (IEAs) from Bureau of Economic Analysis (BEA) in the US to predict Granger causality of coupling US stocks. Therefore, a directed weighted complex network (DWCN) is constructed by considering companies as nodes, correlations of abnormal stock returns (alpha) as weights of links, and predicted Granger causalities as the in- dications of directions of links.
+
+The goal of this project is to reveal the Granger causality of price return series and utilise them into the topological analysis and visualisation of DWCN as so far no previous work has attempted to construct a directed network about stock price. In addition, suggestions for stock market are provided according to the results and findings.
+
+The outline of this document is as follows. In Section 2, specific objectives and deliverables are listed. In Section 3, relevant previous researches on financial market, complex networks, and machine learning are reviewed. Section 4 de- scribes the analytical methods. Ethics and professional considerations and risk considerations are respectively discussed in Section 5 and 6. Section 7 describes project evaluation approaches and finally, planning Gantt chart is presented in Section 8.
+
+\section{Objectives}
+
+\section{Proposed methodology}
+\subsection{Construction of the stock network}
+\subsubsection{EIO (Economic Input-Output) table}
+
+The Bureau of Economic Analysis (BEA) in the US publishes Economic Input-Output (EIO) tables each year, which are the transaction matrices of all purchases and sales between sectors in a certain industry group level of a year, i.e. depict how industries provide input to, and use output from, each other to produce Gross Domestic Product (GDP).
+
+This paper uses the uses the use table of 2016. The Among the transaction matrix (Z) there are Total Industry Input (I) row at the bottom and the Total Industry Output (O) column at the right are the statistics of total purchase by each sectors and total sales from each sectors respectively.
+\begin{eqnarray}\label{equ:eio_i}
+a_{ij} = -log_{10}(z_{ij} / I_j)^{-1}
+\end{eqnarray}
+\begin{eqnarray}\label{equ:eio_o}
+b_{ij} = -log_{10}(z_{ij} / O_i)^{-1}
+\end{eqnarray}
+\subsection{Logarithmic return of stock prices}
+$$r_i(\tau)=lnP_i(\tau)-lnP_i(\tau-\Delta t)$$
+\begin{eqnarray}\label{equ:corr}
+c_{i,j}=\frac{\langle r_ir_j \rangle-\langle r_i\rangle \langle r_j\rangle}{\sqrt{(\langle r_i^2\rangle-\langle r_i\rangle^2)(\langle r_j^2\rangle-\langle r_j\rangle^2)}}
+\end{eqnarray}
+\subsubsection{Correlation coefficient}
+
+% 小世界、随机网络生成方法
+
+\subsection{Topological properties of directed networks}
+\label{sec:aim}
+\subsubsection{Degree, out-degree, and degree distribution}
+The degree of a node $k$ represents the number of its neighbours. In terms of the directed stock price return network, this paper mainly focuses on the out-degree analysis on the nodes.
+
+Out-degree $k_{out}$ is the number of edges which start from the given node and end at others, while in-degree $k_{in}$ is the number of edges which end at the given node and start from others. In directed graph, there is relationship between $k_{in}$ and $k_{out}$
+\begin{eqnarray}
+k=k_{in}+k_{out}.
+\end{eqnarray}
+
+The degree distribution of stock price return network p(k) can be defined as:
+\begin{eqnarray}
+p(k)=\frac{N_k}{N},
+\end{eqnarray}
+
+while $N_k$ represents the number of nodes whose out-degree value is k.
+
+\subsubsection{Path length}
+
+\subsubsection{Clustering coefficient} %%*改写*
+Clustering coefficient is a measure of the degree to which nodes in a network tend to cluster together. Concerning the clustering coefficient of the complex networks, it is defined as:
+\begin{eqnarray}
+C_i=\frac{2E_i}{(k_i(k_i-1))},
+\end{eqnarray}
+
+where $k_i$ is the degree of a given node $v_i$, $E_i$ is the real existing edges among the nearest neighbour nodes of the given node $v_i$, and $k_i(k_i-1)/2$ means the maximum possible edges existing between its nearest neighbours of the node vi. Besides, the clustering coefficient of a node accounts for the extent to which the transmission relationship between the given node and its neighbours also exists between its neighbours, and the clustering coefficient may be given by:
+\begin{eqnarray}
+C=\frac{3\times number\ of\ triangles\ in\ the\ networks}{number\ of\ connected\ triples\ of\ nodes}.
+\end{eqnarray}
+
+This measure gives an indication of the clustering in the whole network, and can be applied to both undirected and directed networks.
+
+\subsubsection{Degree centrality}
+Degree centrality can be used to determine the critical nodes among the entire network and to recognise the most associated firms in the chosen stock market. When it comes to directed network, two separate measures to calculate degree centrality are defined, which are in-degree and out-degree. In-degree represents the number of edges incoming to a node and out-degree represents the number of edges outgoing from a node.
+
+As one of the most widespread measures to calculate network centrality, degree centrality can be described as the number of direct links that relate to a specific node \cite{freeman}. While the degree of centrality has generally been accumulated to the sum of weights to form the weighted networks. The equation of this measure is shown as bellow:
+
+\begin{eqnarray}
+&&C_D^W(i)=\sum_{j}^{N}w_{ij}
+\end{eqnarray}
+
+where $W$ represents the matrix of weighed adjacencies, and $w_{ij}$ represents the weight of the link between node $i$ and $j$.
+
+
+\subsection{Robustness test}
+
+\section{Summary of results}
+
+\section{Outline of the thesis}
+

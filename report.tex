@@ -1,0 +1,111 @@
+\documentclass[12pt,MSc,wordcount,twoside]{muthesis}
+% The regulations say that 12pt should be used
+% Change the MSc option to MPhil, MRes or PhD if appropriate
+
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{url} % typeset URL's reasonably
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{pslatex} % Use Postscript fonts
+%\usepackage{subcaption}
+\usepackage{subfig}
+\usepackage{lipsum}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+\algnewcommand\algorithmicforeach{\textbf{for each}}
+\algdef{S}[FOR]{ForEach}[1]{\algorithmicforeach\ #1\ \algorithmicdo}
+\DeclareMathOperator{\sign}{sign}
+
+\newenvironment{breakablealgorithm}
+{% \begin{breakablealgorithm}
+	\begin{center}
+		\refstepcounter{algorithm}% New algorithm
+		\hrule height.8pt depth0pt \kern2pt% \@fs@pre for \@fs@ruled
+		\renewcommand{\caption}[2][\relax]{% Make a new \caption
+			{\raggedright\textbf{\ALG@name~\thealgorithm} ##2\par}%
+			\ifx\relax##1\relax % #1 is \relax
+			\addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##2}%
+			\else % #1 is not \relax
+			\addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##1}%
+			\fi
+			\kern2pt\hrule\kern2pt
+		}
+	}{% \end{breakablealgorithm}
+		\kern2pt\hrule\relax% \@fs@post for \@fs@ruled
+	\end{center}
+}
+
+% Uncomment the next line if you want subsubsections to be numbered
+%\setcounter{secnumdepth}{3}
+% Uncomment the next line if you want subsubsections to be appear in
+% the table of contents
+%\setcounter{tocdepth}{3}
+
+% Uncomment the following lines if you want to include the date as a
+% header in draft versions
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\lhead{}  % left head
+%\chead{Draft: \today} % centre head
+%\lfoot{}
+%\cfoot{\thepage}
+%\rfoot{}
+
+\begin{document}
+% Uncomment the following lines to leave out list of figures, tables
+% and copyright until final printing
+%\figurespagefalse
+%\tablespagefalse
+%\copyrightfalse
+
+\title{Analysis of Stock Market\\
+  Using Complex Networks\\
+  and Machine Learning}
+\author{Lingjie Zhang}
+\principaladviser{Eva Navarro-López}
+
+\beforeabstract
+
+\prefacesection{Abstract}
+\input{abstract}
+
+\afterabstract
+
+\prefacesection{Acknowledgements}
+I would like to thank...
+\afterpreface
+
+\tableofcontents
+
+% These include the actual text
+\include{chapter_introduction}
+% 建立投资组合，不仅需要时间序列上的不相关性，也需要经济上潜在的不相关性。edge的weight代表价格时间序列上的不相关性，而方向代表经济上的。从而对建立有效的投资组合提供建议。
+\include{chapter_background}
+\include{chapter_community_detection}
+\include{chapter_result}
+\include{chapter_conclusion}
+\include{chapter_bibliography}
+
+  \bibliography{refs}    % this causes the references to be listed
+
+\bibliographystyle{alpha}
+%% the bibliography style determines the format  in which both citations and references are printed,
+%% other possible values are plain and abbrv
+%%
+%% If you want more control of the format of your citations you might want to take a look at
+%% natbib.sty, which should be part of any standard LaTeX installation
+%%
+%% University regulations simply require that your citation style be consistent, so see what style
+%% your supervisor recommends.
+
+% Appendices start here
+
+\appendix
+\include{appendix1}
+
+\end{document}

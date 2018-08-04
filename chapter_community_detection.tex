@@ -1,0 +1,65 @@
+\chapter[Short Chap title]{Community detection}
+This paper considers an approach to detect possible communities in directed networks based on modularities \cite{PhysRevLett.100.118703}.
+
+\begin{algorithm}[H]
+	\caption{Community detection}\label{communitydetection}
+	\begin{algorithmic}[1]
+		\Procedure{Community}{\textit{G, nNode, nEdge, EntireModMat, EntireNodeSpace}}
+		\Procedure{CalDeltaQ}{\textbf{s}, \textbf{B}}
+		\State \textbf{return} \emph{$\textit{Q} \gets \text{1 / (4 * \textit{nNode})} * \textbf{s}^T(\textbf{B}+\textbf{B}^T)\textbf{s}$}
+		\EndProcedure
+		\Procedure{UpdCommunityAssignment}{\textit{NodeSpace}, \textit{UpdAssign}}
+		\State $\textit{Mark1, Mark2} \gets \max( \textit{Assignment})+1, \max( \textit{Assignment})+2$
+		\ForEach {$\textit{node} \in \textit{NodeSpace}$}
+		\If {$\textit{node} \in \textit{UpdAssign} > 0$} {$\text{node of } \textit{Assignment} \gets \emph{Mark1}$}
+		\EndIf
+		\If {$\textit{node} \in \textit{UpdAssign} < 0$} {$\text{node of } \textit{Assignment} \gets \emph{Mark2}$}
+		\EndIf
+		\EndFor
+		\State \textbf{return} \emph{Assignment}
+		\EndProcedure
+		\Procedure{SubdivideCommunity}{\textbf{B}}
+		\State $\textit{SymmetricMatrix} \gets  \textbf{B}+\textbf{B}^T$
+		\State $\textit{eigv} \gets \text{eigenvector as }\max(eigenvalues) \text{ in } \textit{SymmetricMatrix}$
+		\State \textbf{return} $\sign(\textit{eigv})$
+		\EndProcedure
+		\Procedure{CalModularity}{\textit{assignment}}
+		%\State Initilize $Q \gets 0$
+		\ForEach {$\textit{node1} \in \textit{Nodes of G}$}
+		\ForEach {$\textit{node2} \in \textit{Nodes of G}$}
+		\If {$\textit{assignment} \text{ of }  \textit{node1} \gets \textit{assignment} \text{ of } \textit{node2}$}
+		\State $Q \gets Q + HasEdge - (\text{nIn}( \textit{node1}))*(\text{nOut}(\textit{node2}))/ (\text{nEdge})$
+		\EndIf
+		\EndFor
+		\EndFor
+		\State \textbf{return} \emph{$Q / (\text{nEdge})$}
+		\EndProcedure
+		\Procedure{GenModularityMatrix}{\textit{NodeSpace}, \textit{ModMat}}
+		%\State Initilize $ModMat \gets \text{2-D matrix of } \textit{NodeSpace}$
+		\ForEach {$\textit{node1} \in \textit{NodeSpace}$}
+		\ForEach {$\textit{node2} \in \textit{NodeSpace}$}
+		\State $\textit{B} \gets \textit{HasEdge} - (\text{nIn}( \textit{node1}))*(\text{nOut}( \textit{node2})/\text{nEdge})$
+		\If {\text{Assignment of } \textit{node1} = \text{Assignment of } \textit{node2}}
+		%\State Initilize $C \gets 0$
+		\ForEach {$\textit{node} \in \textit{NodeSpace}$} {$C \gets C+\textit{HasEdge1}+\textit{HasEdge2}-(\text{nIn} (\textit{node1})*\text{nOut}(\textit{node})+\text{nIn}( \textit{node})*\text{nOut}(\textit{node1}))/\text{nEdge}$}
+		\EndFor
+		\EndIf
+		\EndFor
+		\EndFor
+		\EndProcedure
+		\Procedure{InterateBisection}{\textit{ModMat, NodeSpace}}
+		\State $\textit{UpdAssign} \gets \text{SubdivideCommunity}(ModMat)$
+		\State $\textit{DeltaQ} \gets \text{CalDeltaQ}(\textit{UpdAssign}, \textit{ModMat})$
+		\If {$DeltaQ > 0$}
+		\State $\textit{Assignment} \gets \text{UpdCommunityAssignment}(\textit{NodeSpace}, \textit{UpdAssign})$
+		\ForEach {$\textit{side} \in \textit{UpdCommunityAssignment}$}
+		\State $\textit{ModMat} \gets \text{GenModularityMatrix}(\textit{NodeSpace})$
+		\State $\text{InterateBisection}(ModMat, NodeSpace)$
+		\EndFor
+		\EndIf 
+		\EndProcedure
+		\State $\text{InterateBisection}(EntireModMat, EntireNodeSpace)$
+		\State \textbf{return} \emph{Assignment}
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
