@@ -92,16 +92,19 @@ Figure~\ref{fig:distributionsm} and \ref{fig:distributionrd} show clearly that t
 The average path length of small-world network and random network are both close to 2, indicates that taking any node in the network, it can expect to reach any other nodes just through one node as medium. For stock network, the expectation number of medium nodes is 1.775, which is also a small number for connection, so like small-world and random networks, stock network also has the small-world property.
 
 % Efficiency.
-\subsection{Community feature}
-The larger value of clustering coefficient for stock network than the other two networks indicating that the nodes in stock network tend to cluster together. Therefore, communities of stock network will be identified implementing the community detection algorithm for directed networks in this section. According to the industrial sectors to which most component stocks are belong, as figure~\ref{fig:community_sector_stacked} shows, following five communities are identified: (1) Production (2) Finance (3) Livelihood (4) Insurance and chemical products (5) Utilities and financial vehicles.
-
-It can see from figure~\ref{fig:community_graph} that the community of finance (green) has a very dense structure, connected closely inside and completely exclusive from other communities. The communities of production (purple) and livelihood (blue) are sparsely distributed while there are some large-sized nodes acting as hubs of the overall network. The other two communities are more interesting because they have peculiar structures.
-
-Every industrial sectors of individual stocks in community are identified to investigate the properties of the community of insurance and chemical products (yellow). As figure~\ref{fig:community_4} illustrates and through the investigation, most firms in the upper and lower clusters are in the sectors of "chemical products" and "Insurance carriers and related activities" respectively, while firms between the two big clusters, like "MCK" (McKesson) and "CAH" (Cardinal Health), are large medical supplier, pharmaceutical and heathcare service companies with high out-degrees to both of the two clusters. Apart from that, there are also considerable number of links from the upper cluster to the hubs of chemical companies. Thus, it is reasonable to infer that the prices of medicines have significant influence to medical insurance industry, additionally the purchases of chemical products of pharmaceutical firms and the sales of chemical products have made pharmaceutical and chemical companies influence to each other.
-
-Another investigation towards the community of utilities and financial vehicles (orange) is conducted by the same measure. As figure~\ref{fig:community_5} illustrates, there is one huge hub (PDM) which is the company "Piedmont Office Realty Trust" among the community while all the others are one-degree nodes located remotely. More links from the hub to the rest than the opposite direction, and also the weights of the former links are generally higher. The hub, "Piedmont Office Realty Trust", is a real estate investment trust company, and the rest in the community contains 59 "Funds, trusts, and other financial vehicles" firms and 44 "Utilities" firms. % infer
 
 Although the assortativity values for the three networks are all non-significant, 
+
+\subsection{Community feature}
+The larger value of clustering coefficient for stock network than the other two networks indicating that the nodes in stock network tend to cluster together. Therefore, communities of stock network will be identified implementing the \textit{algorithm~\ref{alg:communitydetection}} for directed networks in this section. According to the composition of industrial sectors of each community, as figure~\ref{fig:community_sector_stacked} shows, the following five communities are identified: (1) Production (2) Finance (3) Livelihood (4) Insurance and chemical products (5) Utilities and financial vehicles.
+
+The communities of production (purple) and livelihood (blue) are sparsely distributed while there are some large-sized nodes acting as hubs of the overall network. The hubs not only connect to the nodes of same communities, but also the externals. These two communities are partially intertwined due to the high relevancy of production industry and livelihood industry. 
+
+Unlike the above two communities, it can be seen from figure~\ref{fig:community_graph} that the community of finance (green) is decentralised, i.e., there is no obvious hubs and the degrees of each node distribute evenly. It also has a very dense structure, connected closely inside and completely exclusive from other nodes or communities. This means the co-movements among financial stocks are incredibly strong and economically they rely tightly to each other.
+
+The other two communities are more interesting because of their peculiar structural features. Every industrial sectors of individual stocks in community are identified to investigate the properties of the community of insurance and chemical products (yellow). As figure~\ref{fig:community_4} illustrates and through the investigation, almost all firms in the upper and lower clusters are in the sectors of "chemical products" and "insurance carriers and related activities" respectively, while firms between the two big clusters, like "MCK" (McKesson) and "CAH" (Cardinal Health), are large medical supplier, pharmaceutical and heathcare service companies with high out-degrees to both of the two clusters. Apart from that, there are also a considerable number of links from the nodes in upper cluster to the hubs of chemical companies. Thus, it is reasonable to infer that the prices of medicines have significant influence to medical insurance industry, additionally the purchases of chemical products of pharmaceutical firms and the sales of chemical products have made pharmaceutical and chemical companies influence to each other.
+
+Another investigation towards the community of utilities and financial vehicles (orange) is conducted by the same measure. As figure~\ref{fig:community_5} illustrates, there is only one huge hub (PDM) which is the company "Piedmont Office Realty Trust" among the whole community while all the others are one-degree nodes located remotely. More links from the hub to the rest than the opposite direction, and also the weights of the former links are generally higher. The hub, "Piedmont Office Realty Trust", is a real estate investment trust company, and the rest in the community contains 59 "Funds, trusts, and other financial vehicles" firms and 44 "Utilities" firms. % infer
 
 \begin{figure}
 	\begin{center}
@@ -113,27 +116,27 @@ Although the assortativity values for the three networks are all non-significant
 
 \begin{figure} % 各个单独的群落
 	\subfloat[Production]{%
-		\includegraphics[width=0.46\textwidth]{community_1}%
+		\includegraphics[width=0.45\textwidth]{community_1}%
 		\label{fig:community_1}%
 	}%
 	\hfill%
 	\subfloat[Finance]{%
-		\includegraphics[width=0.46\textwidth]{community_2}%
+		\includegraphics[width=0.45\textwidth]{community_2}%
 		\label{fig:community_2}%
 	}%
 	\hfill%
 	\subfloat[Livelihood]{%
-		\includegraphics[width=0.46\textwidth]{community_3}%
+		\includegraphics[width=0.45\textwidth]{community_3}%
 		\label{fig:community_3}%
 	}%
 	\hfill%
 	\subfloat[Insurance and chemical products]{%
-		\includegraphics[width=0.46\textwidth]{community_4}%
+		\includegraphics[width=0.45\textwidth]{community_4}%
 		\label{fig:community_4}%
 	}%
 	\hfill%
 	\subfloat[Utilities and financial vehicles]{%
-		\includegraphics[width=0.46\textwidth]{community_5}%
+		\includegraphics[width=0.45\textwidth]{community_5}%
 		\label{fig:community_5}%
 	}%
 	\caption{Solely community views of the directed stock network. Stock tickers are displayed for the sparsely distributed communities.} \label{fig:distinctcommunities}
