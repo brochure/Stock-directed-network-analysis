@@ -104,7 +104,7 @@ Unlike the above two communities, it can be seen from figure~\ref{fig:community_
 
 The other two communities are more interesting because of their peculiar structural features. Every industrial sectors of individual stocks in community are identified to investigate the properties of the community of insurance and chemical products (yellow). As figure~\ref{fig:community_4} illustrates and through the investigation, almost all firms in the upper and lower clusters are in the sectors of "chemical products" and "insurance carriers and related activities" respectively, while firms between the two big clusters, like "MCK" (McKesson) and "CAH" (Cardinal Health), are large medical supplier, pharmaceutical and heathcare service companies with high out-degrees to both of the two clusters. Apart from that, there are also a considerable number of links from the nodes in upper cluster to the hubs of chemical companies. Thus, it is reasonable to infer that the prices of medicines have significant influence to medical insurance industry, additionally the purchases of chemical products of pharmaceutical firms and the sales of chemical products have made pharmaceutical and chemical companies influence to each other.
 
-Another investigation towards the community of utilities and financial vehicles (orange) is conducted by the same measure. As figure~\ref{fig:community_5} illustrates, there is only one huge hub (PDM) which is the company "Piedmont Office Realty Trust" among the whole community while all the others are one-degree nodes located remotely. More links from the hub to the rest than the opposite direction, and also the weights of the former links are generally higher. The hub, "Piedmont Office Realty Trust", is a real estate investment trust company, and the rest in the community contains 59 "Funds, trusts, and other financial vehicles" firms and 44 "Utilities" firms. % infer
+Another investigation towards the community of utilities and financial vehicles (orange) is conducted by the same measure. As figure~\ref{fig:community_5} illustrates, there is only one huge hub (PDM) which is the company "Piedmont Office Realty Trust" among the whole community while all the others are one-degree nodes located remotely. There are more links from the hub to the rest than the opposite direction, and also the weights of the former links are generally higher. The hub, "Piedmont Office Realty Trust", is a real estate investment trust company, and the rest in the community contains 59 "funds, trusts, and other financial vehicles" firms and 44 "utilities" firms. % infer
 
 \begin{figure}
 	\begin{center}
@@ -139,14 +139,14 @@ Another investigation towards the community of utilities and financial vehicles 
 		\includegraphics[width=0.45\textwidth]{community_5}%
 		\label{fig:community_5}%
 	}%
-	\caption{Solely community views of the directed stock network. Stock tickers are displayed for the sparsely distributed communities.} \label{fig:distinctcommunities}
+	\caption{Community sole views of the directed stock network. Stock tickers are displayed for the sparsely distributed communities.} \label{fig:distinctcommunities}
 \end{figure}
 
 \begin{figure} % 群落的行业柱形图
 	\begin{center}
-		\includegraphics[width=14cm]{community_sector_stacked}
+		\includegraphics[width=15cm]{community_sector_stacked}
 	\end{center}
-	\caption{Count of stocks of each communities by industrial sectors. Sectors are arranged alphabetically.}
+	\caption{Stacked bar chart about the distribution of communities upon industrial sectors. Colours of stacks correspond to the colours of communities in figure~\ref{fig:community_graph} and figure~\ref{fig:distinctcommunities}, except the black stack indicating the nodes not belong to any communities. Sectors are arranged alphabetically.}
 	\label{fig:community_sector_stacked}
 \end{figure}
 
@@ -243,19 +243,20 @@ Another investigation towards the community of utilities and financial vehicles 
 	\caption{Main topologies of directed weighted stock price network}\label{tab:weighted}
 \end{table}
 
-\begin{figure} % P-P sw
-	\centering
-	\subfloat[Bivariate distribution of cumulative sum of daily return]{
-		\label{subfig:sum_return_centrality}
-		\includegraphics[width=10cm]{sum_return_centrality} }
-	
-	\subfloat[Bivariate distribution of standard deviation of daily return]{
-		\label{subfig:std_return_centrality}
-		\includegraphics[width=10cm]{std_return_centrality} }
-	
-	\caption{Bivariate distribution}
-	\label{fig:bivariate}
+\begin{figure}
+	\subfloat[Bivariate distribution of cumulative sum of daily return]{%
+		\includegraphics[width=0.46\textwidth]{sum_return_centrality}%
+		\label{subfig:sum_return_centrality}%
+	}%
+	\hfill%
+	\subfloat[Bivariate distribution of standard deviation of daily return]{%
+		\includegraphics[width=0.465\textwidth]{std_return_centrality}%
+		\label{subfig:std_return_centrality}%
+	}%
+	\caption{Bivariate distribution} \label{fig:bivariate}
 \end{figure}
+
+
 
 % Assortativity with weight 0.12444731038165072
 
