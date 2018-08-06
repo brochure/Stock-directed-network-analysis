@@ -1,14 +1,30 @@
-\chapter[Short Chap title]{Benchmarking networks}
-Specify the number of nodes $N$, the mean degree $K$ (assumed to be an even integer), and a special parameter $\beta$, satisfying $0\leq \beta \leq 1$ and $ N\gg K\gg \ln N\gg 1$ $N\gg K\gg \ln N\gg 1$, the model constructs an undirected graph with $N$ nodes and $\frac{NK}{2} \frac {NK}{2}$ edges in the following way.
+\chapter{Benchmarking networks generation}
+Numerous literatures support the idea that undirected stock networks have small-world features. It is helpful that examine whether the directed one is a small-world network or not by comparing it with known and conventional small-world networks like Watts-Strogatz model~\cite{watts1998collective}, as well as conventional random networks like Erdős–Rényi model~\cite{random}.
+
+\section{Directed Watts-Strogatz small world network}
+The Watts-Strogatz (WS) model is a randomly generated graph with small world network properties such as high clustering coefficient and small average short path lengths.
+
+In the Complex Networks science, a network with both a small average path length and a large average clustering coefficient feature is called a small world network. In the WS model, when the random reconnection probability $p$ of the connected nodes is gradually increased from $0$ to $1$, it can be observed that the initial regular network will go through the following three phases: regular network, small-world network, and eventually random network.
+
+This paper uses an alternative method based on WS model~\cite{song2014simple}. Specify the number of nodes $N$, the mean degree $K$ (assumed to be an even integer), and a special parameter $\beta$, satisfying $0\leq \beta \leq 1$ and $N\gg K\gg \ln N\gg 1$, the model constructs an undirected graph with $N$ nodes and ${NK}/{2}$ edges as the following algorithm depicts:
 
 \begin{algorithm}[H]
 	\caption{WattsStrogatzSmallWroldNetwork}\label{alg:smallworld}
 	\begin{algorithmic}[1]
 		\Procedure{GenerateSmallWorldNetwork}{\textit{nNodes, p0, beta}}
-		\State $\textit{Dmax} \gets \textit{nNodes \% 2}$ 
-		     circulant(D)/Dmax
-		
-		\State \textbf{return} \textit={A}
+		\State $\textit{Dmax} \gets \textit{nNodes \% 2}$
+		\State $\textit{R} \gets range from 1 to \textit{Dmax}$
+		\State $\textit{D} \gets \text{circulant matrix of } \textit{R}/\textit{Dmax}$
+		\State $\textit{p} \gets \textit{beta}*\textit{p0}+((\textit{D} \leq \textit{p0})*(1-\textit{beta}))$
+		\State $\textit{A} \gets 1*(\text{randomised matrix }\textit{p} < p)$
+		\State $\text{fill diagonal of matrix }\textit{A}$
+		\State \textbf{return} {\textit{A}}
 		\EndProcedure
 	\end{algorithmic}
 \end{algorithm}
+
+\section{Directed Erdős–Rényi random network}
+The Erdös–Rényi (ER) model generates a graph that winded randomly between $N$ nodes in the network with probability $p$. The degrees of nodes comply with a Poisson distribution, indicating that most nodes have approximately same number of edges.
+
+Erdős and Rényi has found that as the number of edges $M$ gradually increases from a small value, the random graph will evolve from a fragmented graph with many independent components to a fully connected one \cite{strogatz2001exploring}.
+
