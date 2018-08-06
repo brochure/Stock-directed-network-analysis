@@ -1,0 +1,14 @@
+\chapter[Short Chap title]{Benchmarking networks}
+Specify the number of nodes $N$, the mean degree $K$ (assumed to be an even integer), and a special parameter $\beta$, satisfying $0\leq \beta \leq 1$ and $ N\gg K\gg \ln N\gg 1$ $N\gg K\gg \ln N\gg 1$, the model constructs an undirected graph with $N$ nodes and $\frac{NK}{2} \frac {NK}{2}$ edges in the following way.
+
+\begin{algorithm}[H]
+	\caption{WattsStrogatzSmallWroldNetwork}\label{alg:smallworld}
+	\begin{algorithmic}[1]
+		\Procedure{GenerateSmallWorldNetwork}{\textit{nNodes, p0, beta}}
+		\State $\textit{Dmax} \gets \textit{nNodes \% 2}$ 
+		     circulant(D)/Dmax
+		
+		\State \textbf{return} \textit={A}
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}

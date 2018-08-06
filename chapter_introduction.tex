@@ -19,12 +19,15 @@ The outline of this document is as follows. In Section 2, specific objectives an
 The Bureau of Economic Analysis (BEA) in the US publishes Economic Input-Output (EIO) tables each year, which are the transaction matrices of all purchases and sales between sectors in a certain industry group level of a year, i.e. depict how industries provide input to, and use output from, each other to produce Gross Domestic Product (GDP).
 
 This paper uses the uses the use table of 2016. The Among the transaction matrix (Z) there are Total Industry Input (I) row at the bottom and the Total Industry Output (O) column at the right are the statistics of total purchase by each sectors and total sales from each sectors respectively.
+
 \begin{eqnarray}\label{equ:eio_i}
 a_{ij} = -log_{10}(z_{ij} / I_j)^{-1}
 \end{eqnarray}
 \begin{eqnarray}\label{equ:eio_o}
 b_{ij} = -log_{10}(z_{ij} / O_i)^{-1}
 \end{eqnarray}
+
+
 \subsection{Logarithmic return of stock prices}
 $$r_i(\tau)=lnP_i(\tau)-lnP_i(\tau-\Delta t)$$
 \begin{eqnarray}\label{equ:corr}
@@ -32,7 +35,12 @@ c_{i,j}=\frac{\langle r_ir_j \rangle-\langle r_i\rangle \langle r_j\rangle}{\sqr
 \end{eqnarray}
 \subsubsection{Correlation coefficient}
 
-% 小世界、随机网络生成方法
+
+\subsection{Directed Watts–Strogatz small-world network}
+
+
+
+\subsection{Directed random network}
 
 \subsection{Topological properties of directed networks}
 \label{sec:aim}

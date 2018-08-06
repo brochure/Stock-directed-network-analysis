@@ -1,12 +1,14 @@
 \chapter[Short Chap title]{Empirical study and results}
 \section{Data}
-This paper considers 1,418 stocks of listing US companies that traded consecutively in the NYSE and NASDAQ stock market of US from January 4, 2016 to December 30, 2016 and uses daily closing price during this period.
-% 写一下EIO数据的来源和时间
+This paper considers 1,418 stocks of listing US companies that traded consecutively in the NYSE and NASDAQ stock market of US on the trading days from January 4, 2016 to December 30, 2016 and uses daily closing price during this period.
+
+The economical use table data from the Industry Economic Accounts (IEAs) of year 2016 in a summary-level of industrial sectors are collected from the official website of Bureau of Economic Analysis~\cite{bea}, US Department of Commerce.
+
 
 \section{Network construction}
 This paper first calculated normalised direct requirement and normalised direct demand values for every sectors using formula~\ref{equ:eio_i} and formula~\ref{equ:eio_o} and cross-correlation coefficients between every stock pairs using formula~\ref{equ:corr}.
 
-According to the figure~\ref{fig:eio_transaction_density}, the transaction densities decrease as threshold of normalised direct requirement and normalised direct demand increase, and their patterns are exactly similar with the same inflection point at around $threshold=0.136$ where the densities begin to decline. Therefore, the values of thresholds for normalised direct requirement and normalised direct demand are set to be same, i.e., $\theta_{DD}=\theta_{DR}=\theta_{EIO}$,  to filter the directed edges among the stock network.
+According to the figure~\ref{fig:eio_transaction_density}, the transaction densities decrease as threshold of normalised direct requirement and normalised direct demand increase, and their patterns are exactly similar with the same inflection point at around $threshold=0.136$ where the densities begin to decline. Therefore, the values of thresholds for normalised direct requirement and normalised direct demand are set to be equal, i.e., $\theta_{EIO}=\theta_{DD}=\theta_{DR}$,  to filter the directed edges among the stock network.
 
 \begin{figure}
 	\begin{center}
@@ -32,7 +34,7 @@ According to the figure~\ref{fig:eio_transaction_density}, the transaction densi
 	\label{fig:correlation_edge_density}  
 \end{figure}
 
-Figure~\ref{fig:correlation_distribution} shows the distribution of stock price correlation coefficients has a shape complies to the normal distribution for the long tails. The correlation coefficients are vary from -0.687 to 0.977 with the mean of 0.265. It implies that the prices of most stocks traded in NYSE and NASDAQ usually fluctuate to the same direction.
+Figure~\ref{fig:correlation_distribution} shows the distribution of stock price correlation coefficients has a shape complies to the normal distribution with long tails. The correlation coefficients are vary from -0.687 to 0.977 with the mean of 0.265. It implies that the prices of most stocks traded in NYSE and NASDAQ usually fluctuate to the same direction, but the patterns are less similar.
 
 % 拟合正态分布或t分布
 
@@ -44,7 +46,7 @@ Figure~\ref{fig:correlation_distribution} shows the distribution of stock price 
 	\label{fig:amounts_of_edges_threshold}  
 \end{figure}
 
-Figure~\ref{fig:amounts_of_edges_threshold} shows the number of directed edges remain in the conditions of different value combinations of $\theta_{EIO}$ and $\theta_{corr}$. When both of the thresholds set to be minimal at their own value range, i.e., $\theta_{EIO}=0$ and $\theta_{corr}=-1$, the number of directed edges is $N\times(N-1)=2,009,306$, while $N$ indicates the total number of nodes. According to the figure~\ref{fig:amounts_of_edges_threshold}, the number of edges will be less than 100,000, in which case the network has a density of less than 5\%, if $\theta_{EIO}$ is larger than 0.3545 or $\theta_{corr}$ is larger than 0.5020. 
+Figure~\ref{fig:amounts_of_edges_threshold} shows the number of directed edges remain at the conditions of different value combinations of $\{\theta_{EIO}$, $\theta_{corr}\}$. When both of the thresholds set to be minimal at their own value range, i.e., $\theta_{EIO}=0$ and $\theta_{corr}=-1$, the number of directed edges is $N\times(N-1)=2,009,306$, while $N$ indicates the total number of nodes, which is $1418$. According to the figure~\ref{fig:amounts_of_edges_threshold}, the number of edges will be less than $100,000$, in which case the network has a density of lower than $5\%$, if $\theta_{EIO}\geq0.3545$ or $\theta_{corr}\geq0.5020$. 
 
 \begin{figure}
 	\begin{center}
@@ -55,7 +57,7 @@ Figure~\ref{fig:amounts_of_edges_threshold} shows the number of directed edges r
 \end{figure}
 
 
-It is obvious that the larger values assigned to $\theta_{EIO}$ and $\theta_{corr}$, the more significant for the weights and directions of the remaining edges. But if the network is too sparse, it can not be strongly or weakly connected hence the network becomes inefficient. As a result, this paper selects the threshold-value-pair $\theta_{EIO}=0.292$ and $\theta_{corr}=0.379$ to construct directed unweighted stock network and directed weighted stock network.
+It is obvious that the larger values assigned to $\theta_{EIO}$ and $\theta_{corr}$, the more significant will be for the weights and directions of the remaining edges. But if the network becomes too sparse, it can not be strongly or even weakly connected and there would be many independent cliques, hence the network becomes too inefficient to be a senseful network. As a result, this paper selects the threshold-value-pair $\{\theta_{EIO}=0.292, \theta_{corr}=0.379\}$ to construct a directed unweighted network and a directed weighted network for the 2016 US stock market.
 
 %这里放Gephi的图片 可以随机选择一半的结点作为生成
 
@@ -104,7 +106,7 @@ Unlike the above two communities, it can be seen from figure~\ref{fig:community_
 
 The other two communities are more interesting because of their peculiar structural features. Every industrial sectors of individual stocks in community are identified to investigate the properties of the community of insurance and chemical products (yellow). As figure~\ref{fig:community_4} illustrates and through the investigation, almost all firms in the upper and lower clusters are in the sectors of "chemical products" and "insurance carriers and related activities" respectively, while firms between the two big clusters, like "MCK" (McKesson) and "CAH" (Cardinal Health), are large medical supplier, pharmaceutical and heathcare service companies with high out-degrees to both of the two clusters. Apart from that, there are also a considerable number of links from the nodes in upper cluster to the hubs of chemical companies. Thus, it is reasonable to infer that the prices of medicines have significant influence to medical insurance industry, additionally the purchases of chemical products of pharmaceutical firms and the sales of chemical products have made pharmaceutical and chemical companies influence to each other.
 
-Another investigation towards the community of utilities and financial vehicles (orange) is conducted by the same measure. As figure~\ref{fig:community_5} illustrates, there is only one huge hub (PDM) which is the company "Piedmont Office Realty Trust" among the whole community while all the others are one-degree nodes located remotely. There are more links from the hub to the rest than the opposite direction, and also the weights of the former links are generally higher. The hub, "Piedmont Office Realty Trust", is a real estate investment trust company, and the rest in the community contains 59 "funds, trusts, and other financial vehicles" firms and 44 "utilities" firms. % infer
+Another investigation towards the community of utilities and financial vehicles (orange) is conducted by the same measure. As figure~\ref{fig:community_5} illustrates, there is only one huge hub (PDM) which is the company "Piedmont Office Realty Trust" among the whole community while all the others are one-degree nodes located remotely. There are more links from the hub to the rest than the opposite direction, and also the weights of the former links are generally higher. The hub, "Piedmont Office Realty Trust", is a real estate investment trust company, and the rest in the community contains 59 "funds, trusts, and other financial vehicles" firms and 44 "utilities" firms. For a big realty trust enterprise, demand for financial trust business is extremely high, and its successes of investments upon real estates will promote the development of utilities companies. It depicts that the major realty trust enterprise alone has significant influence to all of these financial trust and utilities companies.
 
 \begin{figure}
 	\begin{center}
