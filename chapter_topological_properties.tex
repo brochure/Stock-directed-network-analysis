@@ -1,1 +1,92 @@
-\chapter[Topological properties]{Topological properties of directed complex networks}
+\chapter[Network Topological properties]{Topological properties of directed complex networks}
+\section{Degree, out-degree, and degree distribution}
+The degree of a node $k$ represents the number of its neighbours. In terms of the directed stock price return network, this paper mainly focuses on the out-degree analysis on the nodes.
+
+Out-degree $k_{out}$ is the number of edges which start from the given node and end at others, while in-degree $k_{in}$ is the number of edges which end at the given node and start from others. In directed graph, there is relationship between $k_{in}$ and $k_{out}$
+\begin{eqnarray}
+k=k_{in}+k_{out}.
+\end{eqnarray}
+
+The degree distribution of stock price return network $p(k)$ can be defined as:
+\begin{eqnarray}
+p(k)=\frac{N_k}{N},
+\end{eqnarray}
+
+while $N_k$ represents the number of nodes whose out-degree value is k.
+
+\section{Average shortest path length}
+
+\section{Clustering coefficient} %%*改写*
+Clustering coefficient is a measure of the degree to which nodes in a network tend to cluster together. Concerning the clustering coefficient of the complex networks, it is defined as:
+\begin{eqnarray}
+C_i=\frac{2E_i}{(k_i(k_i-1))},
+\end{eqnarray}
+
+where $k_i$ is the degree of a given node $v_i$, $E_i$ is the real existing edges among the nearest neighbour nodes of the given node $v_i$, and $k_i(k_i-1)/2$ means the maximum possible edges existing between its nearest neighbours of the node vi. Besides, the clustering coefficient of a node accounts for the extent to which the transmission relationship between the given node and its neighbours also exists between its neighbours, and the clustering coefficient may be given by:
+\begin{eqnarray}
+C=\frac{3\times number\ of\ triangles\ in\ the\ networks}{number\ of\ connected\ triples\ of\ nodes}.
+\end{eqnarray}
+
+This measure gives an indication of the clustering in the whole network, and can be applied to both undirected and directed networks.
+
+\section{Degree centrality}
+Degree centrality can be used to determine the critical nodes among the entire network and to recognise the most associated firms in the chosen stock market. When it comes to directed network, two separate measures to calculate degree centrality are defined, which are in-degree and out-degree. In-degree represents the number of edges incoming to a node and out-degree represents the number of edges outgoing from a node.
+
+As one of the most widespread measures to calculate network centrality, degree centrality can be described as the number of direct links that relate to a specific node \cite{freeman}. While the degree of centrality has generally been accumulated to the sum of weights to form the weighted networks. The equation of this measure is shown as bellow:
+
+\begin{eqnarray}
+&&C_D^W(i)=\sum_{j}^{N}w_{ij}
+\end{eqnarray}
+
+where $W$ represents the matrix of weighed adjacencies, and $w_{ij}$ represents the weight of the link between node $i$ and $j$.
+
+\section{Efficiency}
+\cite{latora2001efficient}
+\subsection{Global efficiency}
+\begin{eqnarray}
+&&E(\textbf{G})=\frac{\sum_{i \neq j \in \textbf{G}} \epsilon_{ij}}{N(N-1)}=\frac{1}{N(N-1)}\sum_{i \neq j \in \textbf{G}} \frac{1}{d_{ij}}
+\end{eqnarray}
+
+\subsection{Local efficiency}
+\begin{eqnarray}
+&&E_{loc}=\frac{1}{N} \sum_{i \in \textbf{G}} E(\textbf{G}_i)
+\end{eqnarray}
+
+\section{Assortativity and Degree Correlations}
+
+The phenomenon of assortative~\cite{newman2002assortative} mixing can be quantified by means of an assortative
+coefficient. Let $E_{ij}$ be the number of edges in the network that connect
+a vertex of type $i$ to one of type $j$, with $i, j=1, . . . , n$, then similar in spirit to the
+adjacency matrix for vertices, these edges can be represented in the form of an edge
+incidence matrix $\mathbf{E}$, with elements $E_{ij}$. A normalized mixing matrix is defined as follows:
+
+\begin{eqnarray}
+&&\mathbf{e}=\frac{\mathbf{E}}{\|\mathbf{E}\|},
+\end{eqnarray}
+
+where $\|\mathbf{E}\|$ refers to the sum of the elements of the matrix $\mathbf{E}$. The entries $e_{ij}$ in the normalized matrix represent the fraction of edges that connect vertices of types $i$ and $j$, and satisfies the normalization condition,
+
+\begin{eqnarray}
+&&\sum_{ij}e_{ij}=1.
+\end{eqnarray}
+
+The assortativity coefficient $r$ is then defined thus,
+
+\begin{eqnarray}
+&&r=\frac{Tr(\mathbf{e})-\|\mathbf{e}\|^2}{1-\|\mathbf{e}\|^2},\label{con:degreecorr}
+\end{eqnarray}
+
+where $Tr(\mathbf{e})$ is the standard matrix trace—the sum of the diagonal elements $e_{ii}$. The value of the coefficient $r$ lies in the range $-1\leq{r}\leq{1}$, where 1 represents a perfectly assortative network, 0 a randomly mixed one and -1 a perfectly disassortative network.
+
+Since the degree is an important topological measure, degree correlations assume a significant amount of relevance as they can give rise to complicated network structural effects. The degree correlation can be computed using Eqn.~\ref{con:degreecorr}, where the elements $e_{ij}$ represent the fraction of edges that connect a vertex of degree $i$ to that with degree $j$.
+
+\section{Modularity}
+Modularity stands for the difference between fraction of links that fall within communities and the expected fraction if links are randomly distributed~\cite{newman2004finding}. This project introduces modularity as a measure to evaluate the connection strength between node pair within a group. Regarding to the industry where the stocks belong to, these stocks are divided into different groups hence modularity is used to measure the closeness of intra- and inter-group.
+
+Two groups are combined to generate the modularity value while computing the closeness of two groups, as formula below shows:
+
+\begin{eqnarray}
+&&Q=\frac{1}{2m}\sum_{j}\left[w_{ij}-\frac{k_ik_j}{2m}\right]\delta\left(c_i,c_j\right)
+\end{eqnarray}
+
+where $c_i$ is the community to which node $i$ is assigned, and $k_i$ represents the degree of node $i$. The $\delta$-function $\delta(u,v)$ is 1 if $u=v$ and 0 otherwise and $m=0.5\sum_{ij}w_{ij}$ is the sum of weights in the whole network.

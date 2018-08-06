@@ -45,46 +45,6 @@ c_{i,j}=\frac{\langle r_ir_j \rangle-\langle r_i\rangle \langle r_j\rangle}{\sqr
 
 \subsection{Topological properties of directed networks}
 \label{sec:aim}
-\subsubsection{Degree, out-degree, and degree distribution}
-The degree of a node $k$ represents the number of its neighbours. In terms of the directed stock price return network, this paper mainly focuses on the out-degree analysis on the nodes.
-
-Out-degree $k_{out}$ is the number of edges which start from the given node and end at others, while in-degree $k_{in}$ is the number of edges which end at the given node and start from others. In directed graph, there is relationship between $k_{in}$ and $k_{out}$
-\begin{eqnarray}
-k=k_{in}+k_{out}.
-\end{eqnarray}
-
-The degree distribution of stock price return network p(k) can be defined as:
-\begin{eqnarray}
-p(k)=\frac{N_k}{N},
-\end{eqnarray}
-
-while $N_k$ represents the number of nodes whose out-degree value is k.
-
-\subsubsection{Path length}
-
-\subsubsection{Clustering coefficient} %%*改写*
-Clustering coefficient is a measure of the degree to which nodes in a network tend to cluster together. Concerning the clustering coefficient of the complex networks, it is defined as:
-\begin{eqnarray}
-C_i=\frac{2E_i}{(k_i(k_i-1))},
-\end{eqnarray}
-
-where $k_i$ is the degree of a given node $v_i$, $E_i$ is the real existing edges among the nearest neighbour nodes of the given node $v_i$, and $k_i(k_i-1)/2$ means the maximum possible edges existing between its nearest neighbours of the node vi. Besides, the clustering coefficient of a node accounts for the extent to which the transmission relationship between the given node and its neighbours also exists between its neighbours, and the clustering coefficient may be given by:
-\begin{eqnarray}
-C=\frac{3\times number\ of\ triangles\ in\ the\ networks}{number\ of\ connected\ triples\ of\ nodes}.
-\end{eqnarray}
-
-This measure gives an indication of the clustering in the whole network, and can be applied to both undirected and directed networks.
-
-\subsubsection{Degree centrality}
-Degree centrality can be used to determine the critical nodes among the entire network and to recognise the most associated firms in the chosen stock market. When it comes to directed network, two separate measures to calculate degree centrality are defined, which are in-degree and out-degree. In-degree represents the number of edges incoming to a node and out-degree represents the number of edges outgoing from a node.
-
-As one of the most widespread measures to calculate network centrality, degree centrality can be described as the number of direct links that relate to a specific node \cite{freeman}. While the degree of centrality has generally been accumulated to the sum of weights to form the weighted networks. The equation of this measure is shown as bellow:
-
-\begin{eqnarray}
-&&C_D^W(i)=\sum_{j}^{N}w_{ij}
-\end{eqnarray}
-
-where $W$ represents the matrix of weighed adjacencies, and $w_{ij}$ represents the weight of the link between node $i$ and $j$.
 
 
 \subsection{Robustness test}
