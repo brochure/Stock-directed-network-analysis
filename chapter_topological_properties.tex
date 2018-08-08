@@ -1,20 +1,39 @@
 \chapter[Network Topological properties]{Topological properties of directed complex networks}
-\section{Degree, out-degree, and degree distribution}
-The degree of a node $k$ represents the number of its neighbours. In terms of the directed stock price return network, this paper mainly focuses on the out-degree analysis on the nodes.
-
-Out-degree $k_{out}$ is the number of edges which start from the given node and end at others, while in-degree $k_{in}$ is the number of edges which end at the given node and start from others. In directed graph, there is relationship between $k_{in}$ and $k_{out}$
+\section{Degree centrality and strength centrality}
+The degree of a node $k$ represents the number of its neighbours. In directed network, out-degree $k_{out}$ is the number of edges which start from the given node and end at others, while in-degree $k_{in}$ is the number of edges which end at the given node and start from others. Thus, there is relationship between $k_{in}$ and $k_{out}$:
 \begin{eqnarray}
 k=k_{in}+k_{out}.
 \end{eqnarray}
 
-The degree distribution of stock price return network $p(k)$ can be defined as:
+As one of the most widespread measures to calculate network centrality, degree centrality of a node can be described as the number of direct links that relate to a specific node \cite{freeman}. In terms of the directed stock price return network, this paper mainly focuses on the out-degree analysis on the nodes. Moreover, the strength centrality has generally been accumulated to the sum of weights of out-degrees to form the weighted networks. The equation of this measure is shown as bellow:
 \begin{eqnarray}
-p(k)=\frac{N_k}{N},
+&&C_D^W(i)=\sum_{j}^{N}w_{ij}
 \end{eqnarray}
 
-while $N_k$ represents the number of nodes whose out-degree value is k.
+where $W$ represents the matrix of weighed adjacencies, and $w_{ij}$ represents the weight of the link between node $i$ and $j$.
+
+\section{Degree distribution and strength distribution}
+The degree distribution of stock price return network $p(k)$ can be defined as:
+\begin{eqnarray}
+p_d(k)=\frac{N_k}{N},
+\end{eqnarray}
+
+while $N_k$ represents the number of nodes whose out-degree value is k. The distribution of strength has a similar definition:
+\begin{eqnarray}
+p_s(w)=\frac{N_w}{N},
+\end{eqnarray}
+while $N_w$ represents the number of nodes whose strength value is w.
 
 \section{Average shortest path length}
+
+\section{Betweenness centrality}
+
+Other than strength, betweenness centrality~\cite{freeman1977set} can be used to determine the critical nodes among the entire network and to recognise the most associated firms in the chosen stock market. When it comes to weighted networks, betweenness centrality of a node is the sum of the weights in the fraction of all-pairs shortest paths that pass through this node, which can be described as the following equation:
+\begin{eqnarray}
+&&C_B(v)=\sum_{s,t \in V}\frac{\sigma(s,t|v)}{\sigma(s,t)}
+\end{eqnarray}
+
+where $V$ is the set of nodes, $\sigma(s,t)$ is the sum of weights of all-pairs shortest $(s,t)$-paths, and $\sigma(s,t|v)$ is the sum of weights of those paths passing through some node $v$ other than $s,t$. If $s=t$, $\sigma(s,t)=1$, and if $v\in s,t$, $\sigma(s,t|v)=0$.
 
 \section{Clustering coefficient} %%*改写*
 Clustering coefficient is a measure of the degree to which nodes in a network tend to cluster together. Concerning the clustering coefficient of the complex networks, it is defined as:
@@ -28,17 +47,6 @@ C=\frac{3\times number\ of\ triangles\ in\ the\ networks}{number\ of\ connected\
 \end{eqnarray}
 
 This measure gives an indication of the clustering in the whole network, and can be applied to both undirected and directed networks.
-
-\section{Degree centrality}
-Degree centrality can be used to determine the critical nodes among the entire network and to recognise the most associated firms in the chosen stock market. When it comes to directed network, two separate measures to calculate degree centrality are defined, which are in-degree and out-degree. In-degree represents the number of edges incoming to a node and out-degree represents the number of edges outgoing from a node.
-
-As one of the most widespread measures to calculate network centrality, degree centrality can be described as the number of direct links that relate to a specific node \cite{freeman}. While the degree of centrality has generally been accumulated to the sum of weights to form the weighted networks. The equation of this measure is shown as bellow:
-
-\begin{eqnarray}
-&&C_D^W(i)=\sum_{j}^{N}w_{ij}
-\end{eqnarray}
-
-where $W$ represents the matrix of weighed adjacencies, and $w_{ij}$ represents the weight of the link between node $i$ and $j$.
 
 \section{Efficiency}
 \cite{latora2001efficient}

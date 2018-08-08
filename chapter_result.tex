@@ -225,13 +225,15 @@ Another investigation towards the community of utilities and financial vehicles 
 
 
 \section{Analysis of the directed weighted network}
+\subsection{Topologies}
+
 % Strength distribution
 \begin{table}
 	\begin{center}
 		\begin{tabular}{|r|c|}\hline\hline
 			&Undirected stock network\\\hline
 			Strength distribution&Power-law\\
-			Average centrality&1\\
+			Average strength&1\\
 			Weighted assortativity&0.1244\\
 			\hline\hline
 		\end{tabular}
@@ -241,13 +243,13 @@ Another investigation towards the community of utilities and financial vehicles 
 
 \begin{figure}
 	\subfloat[Bivariate distribution of cumulative sum of daily return]{%
-		\includegraphics[width=0.46\textwidth]{sum_return_centrality}%
-		\label{subfig:sum_return_centrality}%
+		\includegraphics[width=0.46\textwidth]{sum_return_weighted_centrality}%
+		\label{subfig:sum_return_weighted_centrality}%
 	}%
 	\hfill%
 	\subfloat[Bivariate distribution of standard deviation of daily return]{%
-		\includegraphics[width=0.465\textwidth]{std_return_centrality}%
-		\label{subfig:std_return_centrality}%
+		\includegraphics[width=0.465\textwidth]{std_return_weighted_centrality}%
+		\label{subfig:std_return_weighted_centrality}%
 	}%
 	\caption{Bivariate distribution} \label{fig:bivariate}
 \end{figure}
