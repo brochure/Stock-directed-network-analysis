@@ -221,8 +221,6 @@ Another investigation towards the community of utilities and financial vehicles 
 
 %Betweenness centrality
 
-%Community detection
-
 
 \section{Analysis of the directed weighted network}
 \subsection{Topologies}
@@ -231,43 +229,35 @@ Another investigation towards the community of utilities and financial vehicles 
 \begin{table}
 	\begin{center}
 		\begin{tabular}{|r|c|}\hline\hline
-			&Undirected stock network\\\hline
+			&Weighted stock network\\\hline
 			Strength distribution&Power-law\\
-			Average strength&1\\
-			Weighted assortativity&0.1244\\
+			Average strength&40.89\\ %40.88927702272619
+			Average betweenness centrality&0.0007440\\
+			Weighted assortativity&0.1244\\ % Assortativity with weight 0.12444731038165072
 			\hline\hline
 		\end{tabular}
 	\end{center}
-	\caption{Main topologies of directed weighted stock price network}\label{tab:weighted}
+	\caption{Main topologies of weighted stock network}\label{tab:weighted}
 \end{table}
 
 \begin{figure}
-	\subfloat[Bivariate distribution of cumulative sum of daily return]{%
+	\subfloat[Bivariate distribution beween betweenness centralities of nodes and cumulative sums of stock daily return. The returns are actually logarithmic returns therefore the accumulation of all daily logarithmic returns in an entire year equals to a corresponding yearly logarithmic return.]{%
 		\includegraphics[width=0.46\textwidth]{sum_return_weighted_centrality}%
 		\label{subfig:sum_return_weighted_centrality}%
 	}%
 	\hfill%
-	\subfloat[Bivariate distribution of standard deviation of daily return]{%
+	\subfloat[Bivariate distribution beween betweenness centralities of nodes and standard deviations of stock daily return.]{%
 		\includegraphics[width=0.465\textwidth]{std_return_weighted_centrality}%
 		\label{subfig:std_return_weighted_centrality}%
 	}%
-	\caption{Bivariate distribution} \label{fig:bivariate}
+	\caption{Bivariate distributions with betweenness centrality} \label{fig:bivariate}
 \end{figure}
 
-
-
-% Assortativity with weight 0.12444731038165072
-
-
-
-% Topological robustness
-% Abnormal return regression with topological features as factors
 \subsection{Analysis on the relationship between price return and clustering coefficient}
 
 
-%\section{Community detection}
+
 %\label{sec:community}
-%命名各个community
 \section{Stability of network}
 
 %Industry
