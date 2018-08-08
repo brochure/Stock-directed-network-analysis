@@ -253,7 +253,10 @@ Another investigation towards the community of utilities and financial vehicles 
 	\caption{Bivariate distributions with betweenness centrality} \label{fig:bivariate}
 \end{figure}
 
-\subsection{Analysis on the relationship between price return and clustering coefficient}
+\subsection{Analysis on the relationship between price return and betweenness centrality}
+Figures~\ref{fig:bivariate} reveal the relationships between betweenness centralities and price returns of stocks. First, in figure~\ref{subfig:sum_return_weighted_centrality} as much more nodes have low betweenness centrality values (lower than $0.001$), and the cumulative sum of returns fall intensively in the range of $(-0.1, 0.6)$, while that of the nodes with high betweenness centrality values (higher than $0.001$) also fall evenly in the same range Therefore, there is no significant difference between the expected return for stocks with different betweenness centrality values.
+
+Second, according to the figure~\ref{subfig:std_return_weighted_centrality}, as the betweenness centrality of nodes become higher, there will be a higher possibility of nodes tend to have low standard deviation of stock daily return (SDR). The average SDRs for all values of betweenness centrality remain similar because of the more frequent occurrence of outliers with higher betweenness centralities from the figure.
 
 
 
