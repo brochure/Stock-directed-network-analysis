@@ -57,7 +57,7 @@ It is obvious that the larger values assigned to $\theta_{EIO}$ and $\theta_{cor
 
 \section{Analysis of the directed unweighted network}
 % 对幂指数分布的统计检验
-A directed Watts Strogatz small-world network and a random network with the same number of nodes and edges with the stock directed unweighted network are generated. Table~\ref{tab:three} compares the main topologies of the three different networks.
+A directed Watts Strogatz small-world (WS) network and a random network with the same number of nodes and similar number of edges with the stock directed unweighted network are generated. Table~\ref{tab:three} compares the main topologies of the three networks.
 
 \begin{table}
 	\begin{center}
@@ -79,9 +79,10 @@ A directed Watts Strogatz small-world network and a random network with the same
 \end{table}
 
 \subsection{Power-law distribution}
-According to the table~\ref{tab:three}, the values of average out-degrees of stock network, small-world network and random network are almost the same due to the similar number of nodes and edges, but in terms of the distributions of out-degrees, stock network is different from the others. 
 
-Figure~\ref{fig:distributionsm} and \ref{fig:distributionrd} show clearly that the out-degree distribution of small-world network and random network follow the normal distribution, i.e, most degree numbers of nodes fall in the middle range, while figure~\ref{fig:G_out_degree_distribution_square} illustrates that for the stock network, only a few number of nodes show higher out-degree, while most nodes are in the positions of low out-degree level. The distribution of the directed stock price return networks follows power-law distribution with the exponent of 4.057.
+According to the table~\ref{tab:three}, the values of average out-degrees of stock network, small-world network and random network are almost the same due to the identical numbers of nodes and edges, but in terms of the distributions of out-degrees, stock network is totally different from the others. 
+
+Figure~\ref{fig:distributionsm} and \ref{fig:distributionrd} show clearly that the out-degree distributions of small-world network and random network follow the normal distribution, i.e, most degree numbers of nodes fall in the middle range, while figure~\ref{fig:G_out_degree_distribution_square} illustrates that for the stock network, only a few number of nodes show higher out-degree, while most nodes are in the positions of low out-degree level. The distribution of the directed stock price return networks follows power-law distribution with the exponent of 4.057.
 
 %Power-law distribution reveals that most of the nodes have a small degree while a few modes have a higher degree.
 \subsection{Small-world property}
@@ -256,12 +257,13 @@ Another investigation towards the community of utilities and financial vehicles 
 \subsection{Analysis on the relationship between price return and betweenness centrality}
 Figures~\ref{fig:bivariate} reveal the relationships between betweenness centralities and price returns of stocks. First, in figure~\ref{subfig:sum_return_weighted_centrality} as much more nodes have low betweenness centrality values (lower than $0.001$), and the cumulative sum of returns fall intensively in the range of $(-0.1, 0.6)$, while that of the nodes with high betweenness centrality values (higher than $0.001$) also fall evenly in the same range Therefore, there is no significant difference between the expected return for stocks with different betweenness centrality values.
 
-Second, according to the figure~\ref{subfig:std_return_weighted_centrality}, as the betweenness centrality of nodes become higher, there will be a higher possibility of nodes tend to have low standard deviation of stock daily return (SDR). The average SDRs for all values of betweenness centrality remain similar because of the more frequent occurrence of outliers with higher betweenness centralities from the figure.
+Second, according to the figure~\ref{subfig:std_return_weighted_centrality}, in spite of several outliers, as the betweenness centrality of nodes becomes higher, there will be a higher possibility of nodes tend to have low standard deviation of stock daily return. This indicates the hubs in the network have considerably stable return during the specified researched year among the whole stock market. The average standard deviation for all values of betweenness centrality remain similar because of the more frequent occurrences of outliers with higher betweenness centralities from the figure.
 
+As a result, although choosing stocks with high centralities possibly will not bring a higher expected return for a portfolio, they have the functionality of decreasing the overall risks and generating more stable returns, which is also a vital feature for stock investment.
 
 
 %\label{sec:community}
-\section{Stability of network}
+%\section{Stability of network}
 
 %Industry
 

@@ -49,15 +49,18 @@ C=\frac{3\times number\ of\ triangles\ in\ the\ networks}{number\ of\ connected\
 This measure gives an indication of the clustering in the whole network, and can be applied to both undirected and directed networks.
 
 \section{Efficiency}
-\cite{latora2001efficient}
+Network efficiency measures how efficient for information being conducted and exchanged in the network, which can help to determine whether the objective network shows small-world property. There are global and local efficiencies that on the different scale sizes~\cite{latora2001efficient}.
+
 \subsection{Global efficiency}
+Global efficiency quantifies the conduction and exchange of information through out the entire network. The global efficiency of network \textbf{G} is defined as:
 \begin{eqnarray}
-&&E(\textbf{G})=\frac{\sum_{i \neq j \in \textbf{G}} \epsilon_{ij}}{N(N-1)}=\frac{1}{N(N-1)}\sum_{i \neq j \in \textbf{G}} \frac{1}{d_{ij}}
+&&E_{glob}(\textbf{G})=\frac{\sum_{i \neq j \in \textbf{G}} \epsilon_{ij}}{N(N-1)}=\frac{1}{N(N-1)}\sum_{i \neq j \in \textbf{G}} \frac{1}{d_{ij}}
 \end{eqnarray}
 
 \subsection{Local efficiency}
+The local efficiency evaluates the resistance of a network towards node \textit{i} and quantifies the conduction and exchange of information among its neighbours. The local efficiency of node \textit{i} in network \textbf{G} is defined as:
 \begin{eqnarray}
-&&E_{loc}=\frac{1}{N} \sum_{i \in \textbf{G}} E(\textbf{G}_i)
+&&E_{loc}(G, i)=\frac{1}{N} \sum_{i \in \textbf{G}} E_{glob}(\textbf{G}_i)
 \end{eqnarray}
 
 \section{Assortativity and Degree Correlations}
