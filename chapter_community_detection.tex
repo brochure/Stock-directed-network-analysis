@@ -3,7 +3,7 @@ This paper considers a theoretic concept of modularity-based community detection
 
 While there are many methods to identify communities in undirected graphs, the community detection method used in this paper is for the directed graphs proposed by Leicht and Newman~\cite{PhysRevLett.100.118703}, which based on modularity optimisation method. Modularity optimisation method identifies communities by maximizing the modularity $Q$, which is defined as:
 \begin{eqnarray}
-Q=(\textit{fraction of intra-community edges}) - (\textit{expected fraction of such edges}).
+Q=(\textit{fraction of intra-community edges}) - (\textit{expected fraction of such edges})
 \end{eqnarray}
 
 It signifies that a community is figured when the number of edges inside the community is more than the expected number on the basis of chance. As a result, modularity-based community detection maximised intra-community density and minimised inter-community density. While the complexity of modularity optimisation is NP-complete problem, this paper uses the spectral optimisation methodology, which finds the best partition of the directed US stock network by the following expression of $Q$:
@@ -11,14 +11,14 @@ It signifies that a community is figured when the number of edges inside the com
 Q=\frac{1}{m}\sum_{ij}{\left[A_{ij}-\frac{k_i^{\text{in}}k_j^{out}}{m}\right]}\delta_{c_i,c_j}
 \end{eqnarray}
 
-where $A_{ij}$ is defined to be $1$ if there is an edge from $j$ to $i$ and $0$ otherwise. $k_i$ is the in-degree for node $i$, $k_j$ is the out-degree for node $j$, $m$ is the total number of edges in the network. $\delta$ is the Kronecker delta symbol that is $1$ if nodes $i$ and $j$ are in the same community, i.e., $C_i=C_j$, and $0$ otherwise. Spectral optimisation technique for modularity maximisation assigns nodes to different communities based on the sign of the eigenvector, corresponding to the largest positive eigenvalue of the modularity matrix B, whose elements are:
+where $A_{ij}$ is defined to be $1$ if there is an edge from $j$ to $i$ and $0$ otherwise. $k_i$ is the in-degree for node $i$, $k_j$ is the out-degree for node $j$, $m$ is the total number of edges in the network. $\delta$ is the Kronecker delta symbol that is $1$ if nodes $i$ and $j$ are in the same community, i.e., $C_i=C_j$, and $0$ otherwise. Spectral optimisation technique for modularity maximisation assigns nodes to different communities based on the sign of the eigenvector, corresponding to the largest positive eigenvalue of the modularity matrix \textbf{B}, whose elements are:
 \begin{eqnarray}
 B_{ij}=A_{ij}-\frac{k_i^{in}k_j^{out}}{m}
 \end{eqnarray}
 
 This paper applies the repeated bisection graph-partitioning algorithm in the cause of community detection according to Leicht and Newman~\cite{PhysRevLett.100.118703}. This approach begins with partition the network in two and then repeating it while optimising for the maximum modularity score of the communities. A preferred partition of a network results in a higher modularity score, therefore the modularity $Q$ is maximised over all possible partitions of the stock network to detect communities of listed companies.
 
-The following algorithm describes the details about the partitioning process and maximising modularity score in community detection.
+The following algorithm describes the details about the partitioning process and maximising modularity score in community detection. The functions of calculating modularity and subdividing node group are called repeatedly over iterations until no further increment of the overall modularity score.
 
 \begin{algorithm}[H]
 	\caption{Community detection}\label{alg:communitydetection}
