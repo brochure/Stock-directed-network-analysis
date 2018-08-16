@@ -22,6 +22,7 @@ while $N_k$ represents the number of nodes whose out-degree value is k. The dist
 \begin{eqnarray}
 p_s(w)=\frac{N_w}{N},
 \end{eqnarray}
+
 while $N_w$ represents the number of nodes whose strength value is w.
 
 \section{Average shortest path length}
@@ -76,7 +77,6 @@ coefficient. Let $E_{ij}$ be the number of edges in the network that connect
 a vertex of type $i$ to one of type $j$, with $i, j=1, . . . , n$, then similar in spirit to the
 adjacency matrix for vertices, these edges can be represented in the form of an edge
 incidence matrix $\mathbf{E}$, with elements $E_{ij}$. A normalized mixing matrix is defined as follows:
-
 \begin{eqnarray}
 &&\mathbf{e}=\frac{\mathbf{E}}{\|\mathbf{E}\|},
 \end{eqnarray}
@@ -88,7 +88,6 @@ where $\|\mathbf{E}\|$ refers to the sum of the elements of the matrix $\mathbf{
 \end{eqnarray}
 
 The assortativity coefficient $r$ is then defined thus,
-
 \begin{eqnarray}
 &&r=\frac{Tr(\mathbf{e})-\|\mathbf{e}\|^2}{1-\|\mathbf{e}\|^2},\label{con:degreecorr}
 \end{eqnarray}
@@ -101,7 +100,6 @@ Since the degree is an important topological measure, degree correlations assume
 Modularity stands for the difference between fraction of links that fall within communities and the expected fraction if links are randomly distributed~\cite{newman2004finding}. This project introduces modularity as a measure to evaluate the connection strength between node pair within a group. Regarding to the industry where the stocks belong to, these stocks are divided into different groups hence modularity is used to measure the closeness of intra- and inter-group.
 
 Two groups are combined to generate the modularity value while computing the closeness of two groups, as formula below shows:
-
 \begin{eqnarray}
 &&Q=\frac{1}{2m}\sum_{j}\left[w_{ij}-\frac{k_ik_j}{2m}\right]\delta\left(c_i,c_j\right)
 \end{eqnarray}
