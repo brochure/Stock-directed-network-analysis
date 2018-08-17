@@ -1,8 +1,9 @@
 \chapter[Pre-processing of data]{Pre-processing of stock market and industrial data}
+% Introduction / Summary sections for methodologies and background
 \section{Data source}
 This paper considers 1,418 stocks of listing US companies that were traded consecutively in the NYSE and NASDAQ stock market of US on the trading days from January 4, 2016 to December 30, 2016 and uses daily closing price during this period and the economical use table data from the Industry Economic Accounts (IEAs) of year 2016 in a summary-level of industrial sectors are collected from the official website of Bureau of Economic Analysis, US Department of Commerce~\cite{bea}.
 
-\section{EIO (Economic Input-Output) table}
+\section{Economic Input-Output table}
 The Bureau of Economic Analysis (BEA) in the US publishes Economic Input-Output (EIO) tables each year, which are the transaction matrices of all purchases and sales between sectors in a certain industry group level of a year, i.e. depict how industries provide input to, and use output from, each other to produce Gross Domestic Product (GDP).
 
 This paper uses the use table of 2016. Among the transaction matrix \textbf{Z} there are Total Industry Input row \textbf{I} at the bottom and the Total Industry Output column \textbf{O} at the right are the statistics of total purchase by each sectors and total sales from each sectors respectively. Below are the equations for generating the matrices of normalised direct demand \textbf{A} and direct requirement \textbf{B}:
