@@ -1,6 +1,8 @@
 \chapter[Network Topological properties]{Topological properties of directed complex networks}
 \section{Introduction}
+Topological properties of stock complex network are the structural organisations of the interconnections of the system components, e.g., nodes, edges, and the directions and weights of edges, which are also referred to as "network architecture".
 
+In the networks of real stock markets, there are numerous common recurring patterns of connections which have profound effects towards the way the complex financial systems behave. This chapter will introduce the critical topological properties implemented in this thesis.
 
 \section{Degree centrality and strength centrality}
 The degree of a node $k$ represents the number of its neighbours. In directed network, out-degree $k_{out}$ is the number of edges which start from the given node and end at others, while in-degree $k_{in}$ is the number of edges which end at the given node and start from others. Thus, there is relationship between $k_{in}$ and $k_{out}$:
@@ -8,7 +10,7 @@ The degree of a node $k$ represents the number of its neighbours. In directed ne
 k=k_{in}+k_{out}.
 \end{eqnarray}
 
-As one of the most widespread measures to calculate network centrality, degree centrality of a node can be described as the number of direct links that relate to a specific node \cite{freeman}. In terms of the directed stock price return network, this paper mainly focuses on the out-degree analysis on the nodes. Moreover, the strength centrality has generally been accumulated to the sum of weights of out-degrees to form the weighted networks. The equation of this measure is shown as bellow:
+As one of the most widespread measures to calculate network centrality, degree centrality of a node can be described as the number of direct links that relate to a specific node~\cite{freeman}. In terms of the directed stock price return network, this paper mainly focuses on the out-degree analysis on the nodes. Moreover, the strength centrality has generally been accumulated to the sum of weights of out-degrees to form the weighted networks. The equation of this measure is shown as bellow:
 \begin{eqnarray}
 &&C_D^W(i)=\sum_{j}^{N}w_{ij}
 \end{eqnarray}
@@ -110,3 +112,4 @@ Two groups are combined to generate the modularity value while computing the clo
 where $c_i$ is the community to which node $i$ is assigned, and $k_i$ represents the degree of node $i$. The $\delta$-function $\delta(u,v)$ is 1 if $u=v$ and 0 otherwise and $m=0.5\sum_{ij}w_{ij}$ is the sum of weights in the whole network.
 
 \section{Summary}
+In this chapter the critical topological properties for this thesis have been introduced. Corresponding properties will be calculated if they are applicable for the directed-unweighted or directed-weighted network during the empirical practice.
