@@ -67,24 +67,26 @@ There are totally 261 trading days in 2016 of US stock market, this thesis selec
 
 It is not hard to see the composition of stock market are mainly dominated by the finance-related industry ("Banks, credit intermediation, and related activities", "Funds, trusts, and other financial vehicles", "Insurance carriers and related activities", "Securities, commodity contracts, and investments", etc.) and computer-related industry ("Computer and electronic products", "Computer systems design and related services", "Data processing, internet publishing, and other information services", "Electrical equipment, appliances, and components", etc.). The total numbers of finance-related industry and computer-related industry are over 473 and 220 respectively, which jointly take almost half of the number of total stocks. Therefore, it is necessary to use the formalised formula~ which divides the value by the number of stocks in its belonging industrial sector, punishing the connection from or to a node by the industry size, i.e., if a stock is in a large industry, it will need higher transaction flows to connect to other nodes in the network.
 
-\section{Network construction}
-This thesis first calculated normalised direct requirement and normalised direct demand values for every sectors using formula~\ref{equ:eio_i} and formula~\ref{equ:eio_o} and cross-correlation coefficients between every stock pairs using formula~\ref{equ:corr}.
+\section{Networks construction}
+This thesis first generated matrices of normalised direct demand \textbf{A}, normalised direct requirement \textbf{B}, correlation coefficient \textbf{C} using formula~\ref{equ:eio_i}, \ref{equ:eio_o}, and \ref{equ:corr}.
 
-According to the figure~\ref{fig:eio_transaction_density}, the transaction densities decrease as threshold of normalised direct requirement and normalised direct demand increase, and their patterns are exactly similar with the same inflection point at around $threshold=0.136$ where the densities begin to decline. Therefore, the values of thresholds for normalised direct requirement and normalised direct demand are set to be equal, i.e., $\theta_{EIO}=\theta_{DD}=\theta_{DR}$,  to filter the directed edges among the stock network.
+Figure~\ref{fig:eio_transaction_density} from normalised direct demand \textbf{A} and normalised direct requirement \textbf{B} illustrates that the transaction densities decrease as threshold of normalised direct requirement and normalised direct demand increase, and their patterns are very similar with the same inflection point at around $threshold=0.136$ where the densities begin to decline. Therefore, the values of thresholds for normalised direct requirement and normalised direct demand are set to be equal, i.e., $\theta_{EIO}=\theta_{DD}=\theta_{DR}$, to filter the directed edges among the stock network.
 
 \begin{figure}
 	\begin{center}
 		\includegraphics[width=14cm]{eio_transaction_density}
 	\end{center}
-	\caption{Transaction densities}
+	\caption{Transaction densities in EIO. The density of transactions drops vertically at the threshold of 0, which means nearly a quarter of values in the normalised direct demand matrix \textbf{A} and normalised direct requirement \textbf{B} are $0$. Then the two densities both decrease from the point around 0.136, and overall they follow a same pattern.}
 	\label{fig:eio_transaction_density}
 \end{figure}
+
+Figure~\ref{fig:correlation_distribution} shows the distribution of stock price correlation coefficients has a shape complies to the normal distribution. Most correlation coefficients are vary from $-0.2$ to $0.85$ with the mean of $0.265$. Figure~\ref{fig:correlation_edge_density} also shows that the edge density drops dramatically as the correlation coefficient increases from $0$ to $0.50$. It implies that the prices of most stocks traded in NYSE and NASDAQ often fluctuate to the same direction, but the patterns are less similar to each other.
 
 \begin{figure}
 	\begin{center}
 		\includegraphics[width=14cm]{correlation_distribution}
 	\end{center}
-	\caption{Stock price return correlation coefficient distribution}
+	\caption{Correlation coefficient distribution of stock price return. The minimum and maximum are $-0.687$ and $0.977$ and the mean is $0.265$. The distribution follows normal distribution.}
 	\label{fig:correlation_distribution}  
 \end{figure}
 
@@ -92,13 +94,9 @@ According to the figure~\ref{fig:eio_transaction_density}, the transaction densi
 	\begin{center}
 		\includegraphics[width=14cm]{correlation_edge_density}
 	\end{center}
-	\caption{}
+	\caption{Edge density with correlation coefficient. The edge density drops dramatically as the correlation coefficient increases from $0$ to $0.50$.}
 	\label{fig:correlation_edge_density}  
 \end{figure}
-
-Figure~\ref{fig:correlation_distribution} shows the distribution of stock price correlation coefficients has a shape complies to the normal distribution with long tails. The correlation coefficients are vary from -0.687 to 0.977 with the mean of 0.265. It implies that the prices of most stocks traded in NYSE and NASDAQ usually fluctuate to the same direction, but the patterns are less similar.
-
-% 拟合正态分布或t分布
 
 \begin{figure}
 	\begin{center}
@@ -120,8 +118,6 @@ Figure~\ref{fig:amounts_of_edges_threshold} shows the number of directed edges r
 
 
 It is obvious that the larger values assigned to $\theta_{EIO}$ and $\theta_{corr}$, the more significant will be for the weights and directions of the remaining edges. But if the network becomes too sparse, it can not be strongly or even weakly connected and there would be many independent cliques, hence the network becomes too inefficient to be a senseful network. As a result, this paper selects the threshold-value-pair $\{\theta_{EIO}=0.292, \theta_{corr}=0.379\}$ to construct a directed unweighted network and a directed weighted network for the 2016 US stock market.
-
-%这里放Gephi的图片 可以随机选择一半的结点作为生成
 
 \section{Analysis of the directed unweighted network}
 % 对幂指数分布的统计检验
