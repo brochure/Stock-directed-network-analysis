@@ -8,16 +8,19 @@ This paper considers 1,418 stocks of listing US companies that were traded conse
 \section{Economic Input-Output table}
 The Bureau of Economic Analysis (BEA) in the US publishes Economic Input-Output (EIO) tables each year, which are the transaction matrices of all purchases and sales between sectors in a certain industry group level of a year, i.e. depict how industries provide input to, and use output from, each other to produce Gross Domestic Product (GDP).
 
-This paper uses the use table of 2016. Among the transaction matrix \textbf{Z} there are Total Industry Input row \textbf{I} at the bottom and the Total Industry Output column \textbf{O} at the right are the statistics of total purchase by each sectors and total sales from each sectors respectively. Below are the equations for generating the matrices of normalised direct demand \textbf{A} and direct requirement \textbf{B}:
+This paper uses the use table of 2016. Among the transaction matrix \textbf{Z} there are Total Industry Input row \textbf{I} at the bottom and the Total Industry Output column \textbf{O} at the right are the statistics of total purchase by each sectors and total sales from each sectors respectively. The elements of the normalised direct demand matrix \textbf{A} and the direct requirement matrix \textbf{B} are:
 
 \begin{eqnarray}\label{equ:eio_i}
-a_{i,j} = -log_{10}(z_{i,j} / I_j)^{-1}
-\end{eqnarray}
-\begin{eqnarray}\label{equ:eio_o}
-b_{i,j} = -log_{10}(z_{i,j} / O_i)^{-1}
+a_{i,j} = -log_{10}{\frac{z_{i,j}}{I_j N_j}}^{-1}
 \end{eqnarray}
 
-Moreover, certain threshold values $\theta_{DD}$ and $\theta_{DR}$ are specified and a directed edge can be added between stock $i$ and stock $j$ if the value of $a_{i,j}$ is greater than $\theta_{DD}$ or the value of $c_{i,j}$ is greater than $\theta_{DR}$.
+and
+
+\begin{eqnarray}\label{equ:eio_o}
+b_{i,j} = -log_{10}{\frac{z_{i,j}}{O_i N_i}}^{-1}
+\end{eqnarray}
+
+respectively. $N_i$ is the number of stocks in the industrial sector which stock $i$ belongs to. Moreover, certain threshold values $\theta_{DD}$ and $\theta_{DR}$ are specified and a directed edge can be added between stock $i$ and stock $j$ if the value of $a_{i,j}$ is greater than $\theta_{DD}$ or the value of $c_{i,j}$ is greater than $\theta_{DR}$.
 
 \section{Logarithmic return of stock prices}
 Logarithmic return of a stock in this paper is calculated as the log of the close price of one day divided by the close price of the previous day, which is obtained from the following formula:
