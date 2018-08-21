@@ -156,16 +156,48 @@ A directed WS small-world network and a directed ER random network with the same
 	\caption{Out-degree distribution of directed stock price return network} \label{fig:outdegreedistribution}
 \end{figure}
 
+\begin{figure} % P-P SW
+	\centering
+	\subfloat[Empirical out-degree distribution]{
+		\label{subfig:G_sw_out_degree_distribution}
+		\includegraphics[width=12cm]{G_sw_out_degree_distribution} }
+	
+	\subfloat[P-P plot]{
+		\label{subfig:G_ws_mat_prob_plot}
+		\includegraphics[width=12cm]{G_ws_mat_prob_plot} }
+	
+	\caption{Out-degree distribution and P-P plot of small-world network}
+	\label{fig:distributionsm}
+\end{figure}
+
+\begin{figure} % P-P rd
+	\centering
+	\subfloat[Empirical out-degree distribution]{
+		\label{subfig:G_rd_out_degree_distribution}
+		\includegraphics[width=12cm]{G_rd_out_degree_distribution} }
+	
+	\subfloat[P-P plot]{
+		\label{subfig:G_rd_prob_plot}
+		\includegraphics[width=12cm]{G_rd_prob_plot} }
+	
+	\caption{Out-degree distribution and P-P plot of random network}
+	\label{fig:distributionrd}
+\end{figure}
+
 According to the table~\ref{tab:three}, the values of average out-degrees of directed stock network, WS small-world network and ER random network are exactly the same due to the identical numbers of nodes and edges, but in terms of the distributions of out-degrees, stock network is totally different from the others. 
 
-Figures~\ref{fig:distributionsm} and \ref{fig:distributionrd} show clearly that the out-degree distributions of WS small-world network and ER random network follow the normal distribution. Therefore, most degree numbers of nodes fall in the middle range, while figure~\ref{fig:G_out_degree_distribution_square} illustrates that for the stock price return network, only a few number of nodes show higher out-degree, while most nodes are in the positions of low out-degree level. Statistical result shows the distribution of the directed stock price return network follows power-law distribution with the exponent of 4.057.
+The distribution and P-P plots in figures~\ref{fig:distributionsm} and \ref{fig:distributionrd} show clearly that the out-degree distributions of WS small-world network and ER random network fitted nicely to the normal distribution, because most degrees of nodes fall in the middle range, especially in the P-P plots, the sample data points are basically on the diagonal representing the theoretical normal distribution for both WS small-world network and ER random network. Nonetheless, figure~\ref{fig:G_out_degree_distribution_square} illustrates that for the stock price return network, only a few number of nodes show higher out-degree, while most nodes are at the positions of low out-degree level. Statistical result shows the distribution of the directed stock price return network follows power-law distribution with the exponent of $4.057$.
 
-%Power-law distribution reveals that most of the nodes have a small degree while a few modes have a higher degree.
+The discovered power-law distribution property reveals that in the aspect of degree the directed stock network shows the continuity with conventional undirected stock networks in previous studies. Therefore in general, most of the nodes have a small degree while a few modes have a higher degree for both directed and undirected stock networks.
+
 \subsection{Small-world property}
-The average path length of small-world network and random network are both close to 2, indicates that taking any node in the network, it can expect to reach any other nodes just through one node as medium. For stock network, the expectation number of medium nodes is 1.775, which is also a small number for connection, so like small-world and random networks, stock network also has the small-world property.
+Previous researches upon undirected stock networks have argued that they have small-world topologies. Such feature is also applied to the directed WS small-world network and ER random network, for the average path lengths of around $2$, indicating that if we take any node in the network, it can be expected to reach any other nodes just through one node as the medium. For the directed stock network, the expectation number of medium nodes is $1.775$, which can be also treated as a small number for network connectedness.
 
-% Efficiency.
+On the other hand, the global efficiency of the benchmarking networks are slightly higher than $1/l_G$ which are both around $0.5$. It means that in physical terms the flow of information in these two networks is efficient, which is the behaviour of small-world networks. While as for the directed stock network, its global efficiency is less than $1/l_G$ which is $0.36$. In essence, like directed WS small-world and ER random networks, directed stock network also has the small-world properties to some degree, while it is not efficient to exchange information across the network in the global scale.
 
+\subsection{Clustering feature}
+Local efficiency 
+clustering coefficient
 Although the assortativity values for the three networks are all non-significant, 
 
 \subsection{Community structure of the directed-unweighted stock network}
@@ -239,35 +271,6 @@ Another investigation towards the community of utilities and financial vehicles 
 	\end{center}
 	\caption{Main topologies of conventional stock price network}\label{tab:conventional}
 \end{table}
-
-\begin{figure} % P-P SW
-	\centering
-	\subfloat[Empirical out-degree distribution]{
-		\label{subfig:G_sw_out_degree_distribution}
-		\includegraphics[width=12cm]{G_sw_out_degree_distribution} }
-	
-	\subfloat[P-P plot]{
-		\label{subfig:G_ws_mat_prob_plot}
-		\includegraphics[width=12cm]{G_ws_mat_prob_plot} }
-	
-	\caption{Out-degree distribution and P-P plot of small-world network}
-	\label{fig:distributionsm}
-\end{figure}
-
-\begin{figure} % P-P rd
-	\centering
-	\subfloat[Empirical out-degree distribution]{
-		\label{subfig:G_rd_out_degree_distribution}
-		\includegraphics[width=12cm]{G_rd_out_degree_distribution} }
-	
-	\subfloat[P-P plot]{
-		\label{subfig:G_rd_prob_plot}
-		\includegraphics[width=12cm]{G_rd_prob_plot} }
-	
-	\caption{Out-degree distribution and P-P plot of random network}
-	\label{fig:distributionrd}
-\end{figure}
-
 
 \iffalse
 \begin{figure}
