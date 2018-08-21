@@ -10,6 +10,7 @@
 \usepackage{pslatex} % Use Postscript fonts
 %\usepackage{subcaption}
 \usepackage{subfig}
+\usepackage{longtable}
 \usepackage{lipsum}
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
@@ -20,6 +21,9 @@
 \algnewcommand\algorithmicforeach{\textbf{for each}}
 \algdef{S}[FOR]{ForEach}[1]{\algorithmicforeach\ #1\ \algorithmicdo}
 \DeclareMathOperator{\sign}{sign}
+
+\usepackage{array}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 
 \newenvironment{breakablealgorithm}
 {% \begin{breakablealgorithm}

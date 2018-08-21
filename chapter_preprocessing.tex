@@ -1,6 +1,7 @@
 \chapter[Pre-processing of data]{Pre-processing of stock market and industrial data}
 \section{Introduction}
-% Introduction / Summary sections for methodologies and background
+This chapter will introduce the sources of economy data and stock data and the methods to pre-process these data. 
+
 \section{Data source}
 This paper considers 1,418 stocks of listing US companies that were traded consecutively in the NYSE and NASDAQ stock market of US on the trading days from January 4, 2016 to December 30, 2016 and uses daily closing price during this period and the economical use table data from the Industry Economic Accounts (IEAs) of year 2016 in a summary-level of industrial sectors are collected from the official website of Bureau of Economic Analysis, US Department of Commerce~\cite{bea}.
 
@@ -24,7 +25,7 @@ Logarithmic return of a stock in this paper is calculated as the log of the clos
 r_i(\tau)=lnP_i(\tau)-lnP_i(\tau-\Delta t)
 \end{eqnarray}
 
- As a proxy for the percentage change in the price, logarithmic return is symmetric and has mathematical conveniences for adding up or subtracting values on the log scale, which are useful for mathematical finance. Therefore, logarithmic return is the measure of price changes in this paper.
+As a proxy for the percentage change in the price, logarithmic return is symmetric and has mathematical conveniences for adding up or subtracting values on the log scale, which are useful for mathematical finance. Therefore, logarithmic return is the measure of price changes in this paper.
 
 \section{Correlation coefficient}
 The correlation coefficient between two stocks is considered in terms of the matrix \textbf{C}, as the following equation shows:
@@ -35,3 +36,4 @@ c_{i,j}=\frac{\langle r_ir_j \rangle-\langle r_i\rangle \langle r_j\rangle}{\sqr
 where $r$ denotes the return and the bracket indicates a temporal average over the period. Additionally, a certain threshold value $\theta_{corr}$, $0\leq \theta_{corr} \leq1$ is specified, and a directed edge is qualified to be linked between stock $i$ and stock $j$ if the value of $c_{i,j}$ is greater than or equal to $\theta_{corr}$.
 
 \section{Summary}
+In this chapter the data sources together with the pre-processing methods have been introduced. Hence, the table of economical data are converted into matrix and the stock price data are transformed to logarithmic return data and correlation coefficients for further analysis.
