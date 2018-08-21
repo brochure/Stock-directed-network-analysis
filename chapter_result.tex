@@ -118,7 +118,7 @@ Figure~\ref{fig:amounts_of_edges_threshold} shows the number of directed edges r
 
 It is obvious that the larger values assigned to $\theta_{EIO}$ and $\theta_{corr}$, the more significant will be for the weights and directions of the remaining edges. But if the network becomes too sparse, it can not be strongly or even weakly connected and there would be many independent cliques, hence the network becomes too inefficient to be a senseful network. As a result, this paper selects the threshold-value-pair $\{\theta_{EIO}=0.292, \theta_{corr}=0.379\}$ to construct a directed-unweighted network and a directed-weighted network for the 2016 US stock market. Figure~\ref{fig:Graph_01} shows the visualisation of the directed-unweighted stock network.
 
-\section{Analysis of the directed-unweighted network}
+\section{Analysis of the directed-unweighted stock network}
 A directed WS small-world network and a directed ER random network with the same number of nodes and edges with the stock directed-unweighted network are generated according to algorithms~\ref{alg:smallworld} and \ref{alg:random}. Table~\ref{tab:three} compares the main topological properties of the three networks, which will be discussed together with some other measures in the following sections.
 
 \begin{table}
@@ -255,23 +255,6 @@ Another investigation towards the community of utilities and financial vehicles 
 	\label{fig:community_sector_stacked}
 \end{figure}
 
-\begin{table}
-	\begin{center}
-		\begin{tabular}{r|c}\hline\hline
-			&Undirected stock network\\\hline
-			Degree distribution&Power-law\\
-			Average out-degrees&Power-law\\
-			Average path length&2.775\\
-			Clustering coefficient&0.4675\\
-			Global efficiency&0.2563\\
-			Local efficiency&0.6276\\
-			Assortativity&0.02004\\
-			\hline\hline
-		\end{tabular}
-	\end{center}
-	\caption{Main topologies of conventional stock price network}\label{tab:conventional}
-\end{table}
-
 \iffalse
 \begin{figure}
 	\begin{center}
@@ -282,31 +265,51 @@ Another investigation towards the community of utilities and financial vehicles 
 \end{figure}
 \fi
 
-%Clustering coefficient
-%行业内非对称边和行业间对称边的数量
-%Global/ local efficiency
 
-%Betweenness centrality
-
-
-\section{Analysis of the directed-weighted network}
-\subsection{Topological properties}
-
+\section{Analysis of the directed-weighted stock network}
+\subsection{Topological properties on weighted networks}
+Table~\ref{fig:topology_weighted} illustrates the topological properties that utilised the property of the weights of edges. 
 % Strength distribution
+
+\iffalse
 \begin{table}
 	\begin{center}
-		\begin{tabular}{|r|c|}\hline\hline
-			&Weighted stock network\\\hline
-			Strength distribution&Power-law\\
-			Average strength&40.89\\ %40.88927702272619
-			Average betweenness centrality&0.0007440\\
-			Weighted assortativity&0.1244\\ % Assortativity with weight 0.12444731038165072
+		\begin{tabular}{r|c}\hline\hline
+			&Undirected stock network\\\hline
+			Degree distribution & Power-law\\
+			Average out-degrees & Power-law\\
+			Average path length & 2.775\\
+			Average strength & 42.31\\
+			Average betweenness centrality & 0.0007464\\ % 0.0007464209710184614
+			Weighted assortativity & 0.06138\\ % 0.06138005376924545
+			Clustering coefficient & 0.4675\\
+			Global efficiency & 0.2563\\
+			Local efficiency & 0.6276\\
+			Assortativity & 0.02004\\
+			\hline\hline
+		\end{tabular}
+	\end{center}
+	\caption{Main topologies of conventional stock price network}
+	\label{tab:conventional}
+\end{table}
+\fi
+
+\begin{table}
+	\begin{center}
+		\begin{tabular}{r|c|c}\hline\hline
+			Stock network&Directed-weighted&Undirected-weighted\\\hline
+			Strength distribution & Power-law & Power-law\\
+			Average strength & 40.89 & 42.31\\ % 40.88927702272619
+			Average betweenness centrality & 0.0007440 & 0.0007464\\
+			Weighted assortativity & 0.1244 & 0.06138\\ % Assortativity with weight 0.12444731038165072
 			\hline\hline
 		\end{tabular}
 	\end{center}
 	\caption{Main topologies of weighted stock network}\label{tab:weighted}
+	\label{fig:topology_weighted}
 \end{table}
 
+\subsection{Analysis on the relationship between price return and betweenness centrality}
 \begin{figure}
 	\subfloat[Bivariate distribution beween betweenness centralities of nodes and cumulative sums of stock daily return. The returns are actually logarithmic returns therefore the accumulation of all daily logarithmic returns in an entire year equals to a corresponding yearly logarithmic return.]{%
 		\includegraphics[width=0.46\textwidth]{sum_return_weighted_centrality}%
@@ -320,7 +323,6 @@ Another investigation towards the community of utilities and financial vehicles 
 	\caption{Bivariate distributions with betweenness centrality} \label{fig:bivariate}
 \end{figure}
 
-\subsection{Analysis on the relationship between price return and betweenness centrality}
 Figures~\ref{fig:bivariate} reveal the relationships between betweenness centralities and price returns of stocks. First, in figure~\ref{subfig:sum_return_weighted_centrality} as much more nodes have low betweenness centrality values (lower than $0.001$), and the cumulative sum of returns fall intensively in the range of $(-0.1, 0.6)$, while that of the nodes with high betweenness centrality values (higher than $0.001$) also fall evenly in the same range Therefore, there is no significant difference between the expected return for stocks with different betweenness centrality values.
 
 Second, according to the figure~\ref{subfig:std_return_weighted_centrality}, in spite of several outliers, as the betweenness centrality of nodes becomes higher, there will be a higher possibility of nodes tend to have low standard deviation of stock daily return. This indicates the hubs in the network have considerably stable return during the specified researched year among the whole stock market. The average standard deviation for all values of betweenness centrality remain similar because of the more frequent occurrences of outliers with higher betweenness centralities from the figure.
