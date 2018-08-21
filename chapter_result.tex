@@ -98,39 +98,39 @@ Figure~\ref{fig:correlation_distribution} shows the distribution of stock price 
 	\label{fig:correlation_edge_density}  
 \end{figure}
 
+Figure~\ref{fig:amounts_of_edges_threshold} shows the number of directed edges remain at the conditions of different value combinations of $\{\theta_{EIO}$, $\theta_{corr}\}$. When both of the thresholds set to be minimal at their own value range, i.e., $\theta_{EIO}=0$ and $\theta_{corr}=-1$, the number of directed edges is $N\times(N-1)=2,009,306$, while $N$ indicates the total number of nodes, which is $1418$. According to the figure~\ref{fig:amounts_of_edges_threshold}, the number of edges will be less than $100,000$, in which case the network has a density of lower than $5\%$, if $\theta_{EIO}\geq0.3545$ or $\theta_{corr}\geq0.5020$. 
+
 \begin{figure}
 	\begin{center}
 		\includegraphics[width=15cm]{amounts_of_edges_threshold}
 	\end{center}
-	\caption{Numbers of directed edges per EIO-threshold and correlation-coefficient-threshold}
+	\caption{Heatmap of the numbers of directed edges per EIO-threshold and correlation-coefficient-threshold. The number of directed edges changes from the maximum to $0$ as $\theta_{EIO}$ decreases from $0.10$ to $0.45$ and $\theta_{corr}$ increases from $-0.70$ to $0.68$.}
 	\label{fig:amounts_of_edges_threshold}  
 \end{figure}
-
-Figure~\ref{fig:amounts_of_edges_threshold} shows the number of directed edges remain at the conditions of different value combinations of $\{\theta_{EIO}$, $\theta_{corr}\}$. When both of the thresholds set to be minimal at their own value range, i.e., $\theta_{EIO}=0$ and $\theta_{corr}=-1$, the number of directed edges is $N\times(N-1)=2,009,306$, while $N$ indicates the total number of nodes, which is $1418$. According to the figure~\ref{fig:amounts_of_edges_threshold}, the number of edges will be less than $100,000$, in which case the network has a density of lower than $5\%$, if $\theta_{EIO}\geq0.3545$ or $\theta_{corr}\geq0.5020$. 
 
 \begin{figure}
 	\begin{center}
 		\includegraphics[width=14cm]{Graph_01}
 	\end{center}
-	\caption{Transaction densities}
+	\caption{Visualisation of the directed-unweighted stock price return network. The stock codes are nodes and the clockwise rotations of edges are directions.}
 	\label{fig:Graph_01}
 \end{figure}
 
+It is obvious that the larger values assigned to $\theta_{EIO}$ and $\theta_{corr}$, the more significant will be for the weights and directions of the remaining edges. But if the network becomes too sparse, it can not be strongly or even weakly connected and there would be many independent cliques, hence the network becomes too inefficient to be a senseful network. As a result, this paper selects the threshold-value-pair $\{\theta_{EIO}=0.292, \theta_{corr}=0.379\}$ to construct a directed-unweighted network and a directed-weighted network for the 2016 US stock market. Figure~\ref{fig:Graph_01} shows the visualisation of the directed-unweighted stock network.
 
-It is obvious that the larger values assigned to $\theta_{EIO}$ and $\theta_{corr}$, the more significant will be for the weights and directions of the remaining edges. But if the network becomes too sparse, it can not be strongly or even weakly connected and there would be many independent cliques, hence the network becomes too inefficient to be a senseful network. As a result, this paper selects the threshold-value-pair $\{\theta_{EIO}=0.292, \theta_{corr}=0.379\}$ to construct a directed unweighted network and a directed weighted network for the 2016 US stock market.
-
-\section{Analysis of the directed unweighted network}
-% 对幂指数分布的统计检验
-A directed Watts Strogatz small-world (WS) network and a random network with the same number of nodes and similar number of edges with the stock directed unweighted network are generated. Table~\ref{tab:three} compares the main topologies of the three networks.
+\section{Analysis of the directed-unweighted network}
+A directed WS small-world network and a directed ER random network with the same number of nodes and edges with the stock directed-unweighted network are generated according to algorithms~\ref{alg:smallworld} and \ref{alg:random}. Table~\ref{tab:three} compares the main topological properties of the three networks, which will be discussed together with some other measures in the following sections.
 
 \begin{table}
 	\begin{center}
-		\begin{tabular}{|r|c|c|c|}\hline\hline
-			Directed networks&Stock network&Small-world network&Random network\\\hline
+		\begin{tabular}{r|c|c|c}\hline\hline
+			\textbf{Directed networks}&\textbf{Stock price return}&\textbf{WS small-world}&\textbf{ER random}\\\hline
 			Number of nodes&1418&1418&1418\\
-			Number of edges&102051&102088&102097\\
+			%Number of edges&102051&102088&102097\\
+			Number of edges&102051&102051&102051\\
 			Out-degree distribution&Power-law&Normal&Normal\\
-			Average out-degrees&143.94&143.99&144.00\\
+			%Average out-degrees&143.94&143.99&144.00\\
+			Average out-degrees&143.94&143.94&143.94\\
 			Average path length&2.775&2.005&1.973\\
 			Clustering coefficient&0.4675&0.1367&0.05105\\
 			Global efficiency&0.2563&0.5161&0.5216\\
@@ -143,10 +143,22 @@ A directed Watts Strogatz small-world (WS) network and a random network with the
 \end{table}
 
 \subsection{Power-law distribution}
+\begin{figure}
+	\subfloat[Empirical out-degree distribution]{%
+		\includegraphics[width=0.46\textwidth]{G_out_degree_distribution_square}%
+		\label{fig:G_out_degree_distribution_square}%
+	}%
+	\hfill%
+	\subfloat[CCDF and power-law fit]{%
+		\includegraphics[width=0.465\textwidth]{out_degree_log_fit_square}%
+		\label{fig:out_degree_log_fit_square}%
+	}%
+	\caption{Out-degree distribution of directed stock price return network} \label{fig:outdegreedistribution}
+\end{figure}
 
-According to the table~\ref{tab:three}, the values of average out-degrees of stock network, small-world network and random network are almost the same due to the identical numbers of nodes and edges, but in terms of the distributions of out-degrees, stock network is totally different from the others. 
+According to the table~\ref{tab:three}, the values of average out-degrees of directed stock network, WS small-world network and ER random network are exactly the same due to the identical numbers of nodes and edges, but in terms of the distributions of out-degrees, stock network is totally different from the others. 
 
-Figure~\ref{fig:distributionsm} and \ref{fig:distributionrd} show clearly that the out-degree distributions of small-world network and random network follow the normal distribution, i.e, most degree numbers of nodes fall in the middle range, while figure~\ref{fig:G_out_degree_distribution_square} illustrates that for the stock network, only a few number of nodes show higher out-degree, while most nodes are in the positions of low out-degree level. The distribution of the directed stock price return networks follows power-law distribution with the exponent of 4.057.
+Figures~\ref{fig:distributionsm} and \ref{fig:distributionrd} show clearly that the out-degree distributions of WS small-world network and ER random network follow the normal distribution. Therefore, most degree numbers of nodes fall in the middle range, while figure~\ref{fig:G_out_degree_distribution_square} illustrates that for the stock price return network, only a few number of nodes show higher out-degree, while most nodes are in the positions of low out-degree level. Statistical result shows the distribution of the directed stock price return network follows power-law distribution with the exponent of 4.057.
 
 %Power-law distribution reveals that most of the nodes have a small degree while a few modes have a higher degree.
 \subsection{Small-world property}
@@ -156,7 +168,7 @@ The average path length of small-world network and random network are both close
 
 Although the assortativity values for the three networks are all non-significant, 
 
-\subsection{Community structure of the directed unweighted stock network}
+\subsection{Community structure of the directed-unweighted stock network}
 The larger value of clustering coefficient for stock network than the other two networks indicating that the nodes in stock network tend to cluster together. Therefore, communities of stock network will be identified implementing the \textit{algorithm~\ref{alg:communitydetection}} for directed networks in this section. According to the composition of industrial sectors of each community, as figure~\ref{fig:community_sector_stacked} shows, the following five communities are identified: (1) Production (2) Finance (3) Livelihood (4) Insurance and chemical products (5) Utilities and financial vehicles.
 
 The communities of production (purple) and livelihood (blue) are sparsely distributed while there are some large-sized nodes acting as hubs of the overall network. The hubs not only connect to the nodes of same communities, but also the externals. These two communities are partially intertwined due to the high relevancy of production industry and livelihood industry. 
@@ -213,7 +225,7 @@ Another investigation towards the community of utilities and financial vehicles 
 
 \begin{table}
 	\begin{center}
-		\begin{tabular}{|r|c|}\hline\hline
+		\begin{tabular}{r|c}\hline\hline
 			&Undirected stock network\\\hline
 			Degree distribution&Power-law\\
 			Average out-degrees&Power-law\\
@@ -227,19 +239,6 @@ Another investigation towards the community of utilities and financial vehicles 
 	\end{center}
 	\caption{Main topologies of conventional stock price network}\label{tab:conventional}
 \end{table}
-
-\begin{figure}
-	\subfloat[Empirical out-degree distribution]{%
-		\includegraphics[width=0.46\textwidth]{G_out_degree_distribution_square}%
-		\label{fig:G_out_degree_distribution_square}%
-	}%
-	\hfill%
-	\subfloat[CCDF and power-law fit]{%
-		\includegraphics[width=0.465\textwidth]{out_degree_log_fit_square}%
-		\label{fig:out_degree_log_fit_square}%
-	}%
-	\caption{Out-degree distribution of stock network} \label{fig:outdegreedistribution}
-\end{figure}
 
 \begin{figure} % P-P SW
 	\centering
@@ -287,8 +286,8 @@ Another investigation towards the community of utilities and financial vehicles 
 %Betweenness centrality
 
 
-\section{Analysis of the directed weighted network}
-\subsection{Topologies}
+\section{Analysis of the directed-weighted network}
+\subsection{Topological properties}
 
 % Strength distribution
 \begin{table}
