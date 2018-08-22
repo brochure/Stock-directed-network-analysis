@@ -69,11 +69,15 @@ Global efficiency quantifies the conduction and exchange of information through 
 &&E_{glob}(\textbf{G})=\frac{\sum_{i \neq j \in \textbf{G}} \epsilon_{ij}}{N(N-1)}=\frac{1}{N(N-1)}\sum_{i \neq j \in \textbf{G}} \frac{1}{d_{ij}}
 \end{eqnarray}
 
+In other words the global efficiency is calculated as the average of each inverse shortest path length among the entire network, hence it is inversely related to the average shortest path length.
+
 \subsection{Local efficiency}
 The local efficiency evaluates the resistance of a network towards node \textit{i} and quantifies the conduction and exchange of information among its neighbours. The local efficiency of node \textit{i} in network \textbf{G} is defined as:
 \begin{eqnarray}
 &&E_{loc}(G, i)=\frac{1}{N} \sum_{i \in \textbf{G}} E_{glob}(\textbf{G}_i)
 \end{eqnarray}
+
+Therefore it can be seen that the local efficiency is related to the clustering coefficient.
 
 \section{Assortativity and Degree Correlations}
 
