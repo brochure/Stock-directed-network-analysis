@@ -19,6 +19,10 @@
 \def\BState{\State\hskip-\ALG@thistlm}
 \makeatother
 \algnewcommand\algorithmicforeach{\textbf{for each}}
+\algnewcommand{\Initialize}[1]{%
+	\State \textbf{Initialize:}
+	\Statex \hspace*{\algorithmicindent}\parbox[t]{.8\linewidth}{\raggedright #1}
+}
 \algdef{S}[FOR]{ForEach}[1]{\algorithmicforeach\ #1\ \algorithmicdo}
 \DeclareMathOperator{\sign}{sign}
 
