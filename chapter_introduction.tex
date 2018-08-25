@@ -3,25 +3,19 @@
 % 建立投资组合，不仅需要时间序列上的不相关性，也需要经济上潜在的不相关性。edge的weight代表价格时间序列上的不相关性，而方向代表经济上的。从而对建立有效的投资组合提供建议。
 Financial markets are complex systems, the interconnectedness and interdependencies of industry sectors in the economy are highly inter-coupled with strong correlations with stock price fluctuations, i.e., the price returns of each coupling stocks underlying certain economic link, e.g. two companies that manufacture similar products, or both in one supply chain. Such behaviours can hardly be explained by traditional financial models and theories.
 
-During recent times, weighted but undirected complex network models have been applied to study the correlations of stock prices. Prevailing approach is to use companies as nodes, and correlations between each pair of stock price series, return series, or fluctuation patterns as links. As a result, much of the previous researches have proved the represented complex networks of worldwide stock markets are scale-free and small-world~\cite{cnsm, perspective}.
+During recent times, weighted but undirected complex network models have been applied to study the correlations of stock prices. Prevailing approach is to use companies as nodes, and correlations between each pair of stock price time series, return time series, or fluctuation patterns as links. As a result, much of the previous researches have proved the represented complex networks of worldwide stock markets are scale-free and small-world~\cite{cnsm, perspective}. However in theory, directed complex networks for the stock market can be achieved hence more potential information can be produced which is helpful for investment decisions and financial market supervisions.
 
-Theoretically, directed complex network for the stock market can be achieved therefore more potential information can be produced which is helpful for investment decisions and financial market supervisions. 
-
+For building an investment portfolio of stocks, one should consider not only about the irrelevancy on price or price return time series, but also about the irrelevancy on economical activities between firms and industries. Naturally and instinctively, we can depict the interactions of economical activities between stock-pairs as the directions of edges in the stock complex network, and the weights of the edges are still determined by the correlations of stock price return time series as many previous researches practised. Therefore, some guidance may be offered for investors to build more effective portfolio and market supervisors to avoid potential crisis according to the study of directed stock complex network.
 
 % hence a new perspective is needed
 
-The goal of this project is to reveal the Granger causality of price return series and utilise them into the topological analysis and visualisation of DWCN as so far no previous work has attempted to construct a directed network about stock price. In addition, suggestions for stock market are provided according to the results and findings.
+The goal of this thesis is to reveal the interactions of economical activities between companies and utilise them into the topological analysis and visualisation of constructed directed complex networks as so far no previous work has attempted to construct a directed network about stock markets. In addition, suggestions for stock market are provided according to the results and findings.
 
 In addition to this approach, there was a goal of using machine learning techniques to predict the directions of stock complex network. However, these results were not as successful and conclusive as we expected. They are reported in the last chapter of this thesis as additional work complementing the core analysis of this thesis based on complex network theory.
-
-The outline of this document is as follows. In Section 2, specific objectives and deliverables are listed. In Section 3, relevant previous researches on financial market, complex networks, and machine learning are reviewed. Section 4 describes the analytical methods. Ethics and professional considerations and risk considerations are respectively discussed in Section 5 and 6. Section 7 describes project evaluation approaches and finally, planning Gantt chart is presented in Section 8.
 
 % In the viewpoint of directed networks, the analysis of stock complex network can provide new 
 
 \section{Objectives and deliverables}
-% in list
-% To - ...
-
 The goal of this project is to construct a directed complex network using economical industrial transaction data and stock price data to depict the US stock market by means of topological properties analysis, community detection and visualisation. Same-sized directed Watt-Strogats small-world network and random networks are generated for the purpose of comparison. This paper will explore whether the conclusions are consistent with the undirected complex network researches.
 
 \vline
@@ -47,7 +41,7 @@ Deliverables produced:
 	\item Stock counts by industries.
 	\item Matrix of EIO transaction flows.
 	\item Heatmap of combinations of thresholds of directed demands and directed requirements flows and correlation coefficients.
-	\item Two benchmarking networks: directed Watts-Strogatz small-world network and directed Erdős–Rényi random network.
+	\item Two benchmarking networks: directed Watts-Strogatz (WS) small-world network and directed Erdős–Rényi (ER) random network.
 	\item Directed-unweighted and directed-weighted stock network.
 	\item Topological properties of studied networks.
 	\item Community partition of directed-unweighted stock network.
