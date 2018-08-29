@@ -32,6 +32,8 @@ p_s(w)=\frac{N_w}{N},
 while $N_w$ represents the number of nodes whose strength value is w.
 
 \section{Average shortest path length}
+In a network, the distance between two nodes is the number of edges contained on the shortest path connecting the two nodes. The average path length of the network refers to the average distance of all pairs of nodes in the network. It indicates the degree of separation between nodes in the network and reflects the global characteristics of the network.
+
 The average shortest path length of a directed network $G$ is defined as the following equation:
 \begin{eqnarray}
 l_G=\frac{1}{n(n-1)}\sum_{i,j\in V}{d(i,j)}
@@ -40,7 +42,6 @@ l_G=\frac{1}{n(n-1)}\sum_{i,j\in V}{d(i,j)}
 where $V$ is the set of nodes of $G$.
 
 \section{Betweenness centrality}
-
 Other than strength, betweenness centrality~\cite{freeman1977set} can be used to determine the critical nodes among the entire network and to recognise the most associated firms in the chosen stock market. When it comes to weighted networks, betweenness centrality of a node is the sum of the weights in the fraction of all-pairs shortest paths that pass through this node, which can be described as the following equation:
 \begin{eqnarray}
 &&C_B(v)=\sum_{s,t \in V}\frac{\sigma(s,t|v)}{\sigma(s,t)}
@@ -49,12 +50,14 @@ Other than strength, betweenness centrality~\cite{freeman1977set} can be used to
 where $V$ is the set of nodes, $\sigma(s,t)$ is the sum of weights of all-pairs shortest $(s,t)$-paths, and $\sigma(s,t|v)$ is the sum of weights of those paths passing through some node $v$ other than $s,t$. If $s=t$, $\sigma(s,t)=1$, and if $v\in s,t$, $\sigma(s,t|v)=0$.
 
 \section{Clustering coefficient} %%*改写*
-Clustering coefficient is a measure of the degree to which nodes in a network tend to cluster together. Concerning the clustering coefficient of the complex networks, it is defined as:
+The clustering coefficient of a node refers to the ratio of the number of connected edges between all of adjacent nodes of the node to the maximum number of possible edges between these adjacent nodes. The clustering coefficient of the network refers to the average of the clustering coefficients of all nodes in the network, which indicates the clustering of nodes in the network, i.e., the clustering characteristic of the network. It also means that how large is the possibility of two nodes are adjacent nodes if they are both adjacent nodes of a same node, which reflects the local characteristics of the network.
+
+In a nutshell, clustering coefficient is a measure of the degree to which nodes in a network tend to cluster together. Concerning the clustering coefficient of the complex networks, it is defined as:
 \begin{eqnarray}
 C_i=\frac{2E_i}{(k_i(k_i-1))},
 \end{eqnarray}
 
-where $k_i$ is the degree of a given node $v_i$, $E_i$ is the real existing edges among the nearest neighbour nodes of the given node $v_i$, and $k_i(k_i-1)/2$ means the maximum possible edges existing between its nearest neighbours of the node vi. Besides, the clustering coefficient of a node accounts for the extent to which the transmission relationship between the given node and its neighbours also exists between its neighbours, and the clustering coefficient may be given by:
+where $k_i$ is the degree of a given node $v_i$, $E_i$ is the real existing edges among the nearest neighbour nodes of the given node $v_i$, and $k_i(k_i-1)/2$ means the maximum possible edges existing between its nearest neighbours of the node $v_i$. Besides, the clustering coefficient of a node accounts for the extent to which the transmission relationship between the given node and its neighbours also exists between its neighbours, and the clustering coefficient may be given by:
 \begin{eqnarray}
 C=\frac{3\times number\ of\ triangles\ in\ the\ networks}{number\ of\ connected\ triples\ of\ nodes}.
 \end{eqnarray}

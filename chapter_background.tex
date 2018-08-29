@@ -6,7 +6,7 @@ This chapter will introduce the development of quantitative finance, stock marke
 
 \section{Background}
 \subsection{Historical review of quantitative finance and stock market investment}
-The theoretical foundations of quantitative finance including efficient market theory, behavioural finance, asset allocation theory and Chaos theory.
+Quantitative finance combines mathematics, statistics, econometrics, machine learning and empirical finance to provide a solid analytical foundation for the analysis of financial issues, especially for the investments in financial markets such as stock, future, option and forex. The theoretical foundations of quantitative finance including efficient market theory, behavioural finance, asset allocation theory and Chaos theory.
 
 The revolutionary who pioneered the theory of asset allocation, Markowitz (1952) proposed the idea of efficient frontier and the mean-variance model, which established a clear mathematical definition of the two previously vague concepts of risk and return~\cite{portfolio}. Markowitz (1956, 1959) then presents the properties and formulas for efficient frontier~\cite{markowitz1956optimization} and generalised it by allowing an arbitrary, possibly singular, covariance matrix~\cite{markowitz1959portfolio}. Tobin (1958) developed Markowitz's theory and added the concept of risk free assets~\cite{tobin1958liquidity}. Sharp (1964) and Linter (1965) added two key assumptions based on the mean-variance model to enable the portfolio mean-variance valid, forming a capital asset pricing model (CAPM) with the support of economic theories~\cite{equilibrium, diversification}. The CAPM believes that only non-dispersible systemic risks can be compensated off, while non-systematic risks can be eliminated by effectively decentralised investments. Investors could only assume systemic risks through decentralised investment. The systematic risk of a single security or portfolio can be characterised by beta, which represents the extent to which a single security or portfolio is affected by the overall market volatility. And later, Richard Michaud and Robert Michaud (1998) addressed the information uncertainty in risk-return estimates by the invention of the Re-sampled Efficient portfolio~\cite{michaud1998asset}.
 
@@ -14,19 +14,45 @@ Since the invention of the CAPM, worldwide scholars had been actively conducting
 
 Researchers had proposed models and theories considering the individual stock features to explain such anomalies. For instance, Fama and French (1993, 1996) proposed a three-factor model based on the inter-temporal capital asset model (ICAPM) \cite{intertemporal} proposed by Merton (1973) and the arbitrage pricing theory (APT)~\cite{options} proposed by Cox et al.(1976), which reveals a large part of the cross-section of the average return of stocks that cannot be explained by CAPM, can be explained using firm size, book-to-market equity ratio, and overall market return~\cite{riskfactors, anomalies} as regression factors.
 
-The efficient market theory is mainly based on the assumption of rational expectations and is the theoretical pillar of traditional finance. While behavioural finance is an interdisciplinary subject that combines finance, psychology, behavioural science, and sociology, trying to reveal the irrational behaviours and decision-making patterns in the financial markets. 
-
-
-Quantitative finance combines mathematics, statistics, econometrics, machine learning and empirical finance to provide a solid analytical foundation for the analysis of financial issues, especially for the investments in financial markets such as stock, future, option and forex.
+%The efficient market theory is mainly based on the assumption of rational expectations and is the theoretical pillar of traditional finance. While behavioural finance is an interdisciplinary subject that combines finance, psychology, behavioural science, and sociology, trying to reveal the irrational behaviours and decision-making patterns in the financial markets. 
 
 \subsection{Theory of complex networks}
-Complex networks are the networks that have some or all of the properties from self-organisation, self-similarity, attractors, small-world and scale-free. A large number of complex systems that exist in nature or society can be described by a variety of networks. A typical network consists of a number of nodes and edges which connect these nodes, where nodes are used to represent different individuals in the real system and edges are used to represent the relationships between individuals. In certain cases, a particular relationship is described as an edge between two nodes, otherwise, it is not connected. Two nodes with edge are considered as adjacent among the network.
+Complex networks are the networks that have some or all of the properties from self-organisation, self-similarity, attractors, small-world and scale-free. A large number of complex systems that exist in nature or society can be described by a variety of networks. Since complex networks are the topological basis for the existence of a large number of complex systems, the research on complex networks is believed to help understand the critical problem of "why complex systems are complex".
+
+A typical network consists of a number of nodes and edges which connect these nodes, where nodes are used to represent different individuals in the real system and edges are used to represent the relationships between individuals. In certain cases, a particular relationship is described as an edge between two nodes, otherwise, it is not connected. Two nodes with edge are considered as adjacent among the network.
 
 For instance, the nervous system can be regarded as a network formed by a large number of nerve cells interconnected by nerve fibres~\cite{watts1998collective}. The computer networks can be regarded as a network in which autonomously working computers are connected to each other through communication media such as optical cables, twisted pairs, coaxial cables, etc~\cite{watts1998collective}. In addition, there are more complex networks like electric power networks~\cite{faloutsos1999power}, social networks~\cite{watts1998collective, hofman2017prediction, ebel2002scale}, etc.
 
-% 研究方法、 群落
+The research of complex networks involves the knowledge and theoretical basis of many disciplines due to its cross-disciplinary and complex characteristics, especially for system science, statistical physics, mathematics, computer and information science. Commonly used analytical methods and tools for complex networks research include graph theory, combinatorial mathematics, matrix theory, probability theory, stochastic process, optimisation theory and genetic algorithms. The main research methods for complex networks are based on the theories and methods of graph theory. However, in recent years, many concepts and methods of statistical physics have been successfully applied in the modelling and calculating of complex networks, such as statistical mechanics, self-organisation theory, critical and phase transition theory, seepage theory, etc. \cite{albert2002statistical}, such as the concept of network structure entropy, and its application of quantitative measure of the "order" of complex networks. The models of complex networks are widely used in numerous scientific areas.
 
-The details of major topology and community feature of complex networks will be presented in chapter~\ref{cpt:topology} and chapter~\ref{cpt:community}.
+% 群落
+
+\vline
+
+Below are some frequently used topological properties and statistical features of complex networks:
+
+\begin{itemize}
+	\item Average path length
+	\item Clustering coefficient
+	\item Degree (strength) and degree (strength) distribution
+	\item Centrality
+	\item Small-world
+	\item Scale-free
+\end{itemize}
+
+\vline
+
+Below are some common complex networks models:
+
+\begin{itemize}
+	\item Regular network
+	\item Random network
+	\item Small-world network
+	\item Scale-free network
+	\item Self-similar network
+\end{itemize}
+
+The details of major topology and community features of complex networks will be presented in chapter~\ref{cpt:topology} and the introduction of small-world and random networks will be presented in chapter~\ref{cpt:community}.
 
 \subsection{Complex networks theory applied in Finance}
 While traditional stock pricing models still capture limited forms of financial behaviour, according to Johnson et al. (2003), the premises of standard financial theory contradict the modern notion of financial markets are complex systems~\cite{financialcomplex}, by which many statistical niceties such as stationarity no longer can be taken for granted.

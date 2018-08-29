@@ -1,11 +1,35 @@
 \chapter{Benchmarking networks generation}
 \section{Introduction}
-Numerous literatures support the idea that undirected stock networks have small-world features. It is helpful to examine whether the directed one is a small-world network or not by comparing it with conventional and acknowledged small-world networks and random network. This chapter will introduce the directed forms of such two conventional and basic networks: Watts-Strogatz small-world network and Erdős–Rényi random network, 
+Numerous literatures support the idea that undirected stock networks have small-world features. It can be helpful to examine whether the directed one is a small-world network or not by comparing it with conventional and acknowledged random network and small-world networks. This chapter will introduce the directed forms of such two conventional and basic networks: Erdős–Rényi random network and Watts-Strogatz small-world network.
+
+\section{Directed Erdős–Rényi random network}
+To some extent, the regular network and the random network are two extremes while the complex network is between them. In random network, nodes are connected in a purely random manner, hence the resulting network is called a random network. If the nodes are wired in a self-organising manner, it will then evolve into a variety of different complex networks.
+
+The Erdös–Rényi (ER) model~\cite{random} generates a graph that winded randomly between $N$ nodes in the network with probability $p$. The degrees of nodes comply with a Poisson distribution, indicating that most nodes have approximately same number of edges.
+
+Erdős and Rényi has found that as the number of edges $M$ gradually increases from a small value, the random graph will evolve from a fragmented graph with many independent components to a fully connected one \cite{strogatz2001exploring}.
+
+\begin{algorithm}[H]
+	\caption{ErdosRenyiRandomNetwork}\label{alg:random}
+	\begin{algorithmic}[1]
+		\Procedure{GenerateRandomNetwork}{\textit{nNodes, p0, edges}}
+		%\Initialize{\strut$w_i^0 \gets 0$, $i=1,\ldots,n$ \\ $S_0 \gets S$}
+		\Initialize{$G \gets \text{Directed graph with nodes in }\textit{nNodes}$}
+		\ForEach {$\textit{e} \in \textit{edges}$}
+		\If {$\text{random number between } 0\text{ and }1 < p0$} {$\text{add edge }\textit{e}\text{ to }\textit{G}$}
+		\EndIf
+		\EndFor
+		\State \textbf{return} {\textit{G}}
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
 
 \section{Directed Watts-Strogatz small-world network}
-The Watts-Strogatz (WS) model~\cite{watts1998collective} is a randomly generated graph with small world network properties such as high clustering coefficient and small average short path lengths.
+The nearest neighbour coupled regular network is highly clustered, but it is not a small-world network. On the other hand, the ER random network has a small average path length but without high clustering characteristics. Therefore, neither of these two types of network models can reproduce some important features of the real network, for most of the actual networks are neither completely regular nor completely random. As a transition from a fully regular network to a completely random network, Watts and Strogtz introduced a small-world network model called the WS small-world model~\cite{watts1998collective}.
 
-In the Complex Networks science, a network with both a small average path length and a large average clustering coefficient feature is called a small world network. In the WS model, when the random reconnection probability $p$ of the connected nodes is gradually increased from $0$ to $1$, it can be observed that the initial regular network will go through the following three phases: regular network, small-world network, and eventually random network.
+%The Watts-Strogatz (WS) model is a randomly generated graph with small-world network properties such as high clustering coefficient and small average short path lengths.
+
+In the complex networks theory, a network with both a small average path length and a large average clustering coefficient feature is called a small-world network. In the WS model, when the random reconnection probability $p$ of the connected nodes is gradually increased from $0$ to $1$, it can be observed that the initial regular network will go through the following three phases: regular network, small-world network, and eventually random network.
 
 This paper uses an alternative method based on WS model~\cite{song2014simple}. Specify the number of nodes $N$, the mean degree $K$ (assumed to be an even integer), and a special parameter $\beta$, satisfying $0\leq \beta \leq 1$ and $N\gg K\gg \ln N\gg 1$, the model constructs an undirected graph with $N$ nodes and ${NK}/{2}$ edges as the following algorithm depicts:
 
@@ -26,25 +50,5 @@ This paper uses an alternative method based on WS model~\cite{song2014simple}. S
 	\end{algorithmic}
 \end{algorithm}
 
-\section{Directed Erdős–Rényi random network}
-The Erdös–Rényi (ER) model~\cite{random} generates a graph that winded randomly between $N$ nodes in the network with probability $p$. The degrees of nodes comply with a Poisson distribution, indicating that most nodes have approximately same number of edges.
-
-Erdős and Rényi has found that as the number of edges $M$ gradually increases from a small value, the random graph will evolve from a fragmented graph with many independent components to a fully connected one \cite{strogatz2001exploring}.
-
-\begin{algorithm}[H]
-	\caption{ErdosRenyiRandomNetwork}\label{alg:random}
-	\begin{algorithmic}[1]
-		\Procedure{GenerateRandomNetwork}{\textit{nNodes, p0, edges}}
-		%\Initialize{\strut$w_i^0 \gets 0$, $i=1,\ldots,n$ \\ $S_0 \gets S$}
-		\Initialize{$G \gets \text{Directed graph with nodes in }\textit{nNodes}$}
-		\ForEach {$\textit{e} \in \textit{edges}$}
-			\If {$\text{random number between } 0\text{ and }1 < p0$} {$\text{add edge }\textit{e}\text{ to }\textit{G}$}
-			\EndIf
-		\EndFor
-		\State \textbf{return} {\textit{G}}
-		\EndProcedure
-	\end{algorithmic}
-\end{algorithm}
-
 \section{Summary}
-In this chapter, the directed forms of WS small-world network and ER random network have been introduced. In practice these two kinds of networks will be generated by the same number of nodes and edges, and their topological properties can be deemed as the benchmarks under certain circumstances to compare with the stock networks.
+In this chapter, the directed forms of ER random network and WS small-world network have been introduced. In practice these two kinds of networks will be generated by the same number of nodes and edges, and their topological properties can be deemed as the benchmarks under certain circumstances to compare with the stock price return networks.
