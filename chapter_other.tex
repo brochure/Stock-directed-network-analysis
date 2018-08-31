@@ -16,6 +16,15 @@ Conducting Granger causality test between the price return series of all stock p
 The goal of the attempt in this chapter is to predict and reveal the Granger causality of price return series with machine learning techniques and utilise them into the construction and topological analysis of the directed stock network as so far no previous work has ever been attempted to construct a directed network of stock markets. While in hindsight this is not a successful attempt, conclusion will be drew according to the results of prediction.
 
 \section{Methodology}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=11cm]{methodology_diagram_dnn}
+	\end{center}
+	\caption{The methodology diagram of machine learning pathway}
+	\label{fig:methodology_diagram_dnn}
+\end{figure}
+
 \subsection{Technical challenges in the pre-processing for network construction}
 A preliminary correlation matrix is generated for the co-integration test of two price return time series. Bivariate Granger causality test is heavy on the precondition of time series analysis and its time-complexity in computer programme is polynomial, as the amount of all coupling stock pair is $n(n-1)/2$, while $n$ is the number of stocks. There are over 3,000 companies listing in NASDAQ, hence there should be millions of times for Granger causality tests and pre-process time series analyses to run in the computer programmes in order to construct the directed stock network.
 
@@ -39,6 +48,8 @@ Calculate the f-statistic using the following equation, the Granger causality is
 Conventional machine learning normally has two basic assumptions: (1) the training sample and the test sample are both independent and identically distributed; (2) there must be enough available training samples. However, as aforementioned reasons in this chapter, the application of machine learning in stock market to predict Granger causalities is hard to satisfy the assumptions.
 
 Transfer learning with existing knowledge to solve only one small target area labelled sample data even without data of learning problems, fundamentally relaxes the basic assumptions of conventional machine learning. Transfer learning can migrate the models which are applicable to big data sets to small data sets, identifies the commonality of different problems, and then transfer the generalised model on customised data sets to achieve customised transfer.
+
+
 
 The ANN model that this thesis has 2 layers and there are 10 nodes in each layers.  The activation function is rectified linear unit (ReLU) \cite{hahnloser2000digital}, as the below expression shows:
 
