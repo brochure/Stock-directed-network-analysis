@@ -76,19 +76,17 @@ Global efficiency quantifies the conduction and exchange of information through 
 In other words the global efficiency is calculated as the average of each inverse shortest path length among the entire network, hence it is inversely related to the average shortest path length.
 
 \subsection{Local efficiency}
-The local efficiency evaluates the resistance of a network towards node \textit{i} and quantifies the conduction and exchange of information among its neighbours. The local efficiency of node \textit{i} in network \textbf{G} is defined as:
+The local efficiency evaluates the resistance of a network towards node \textit{i} and quantifies the conduction and exchange of information among its neighbours. It can also be regarded as the global efficiency computed on node neighborhoods. The local efficiency of node \textit{i} in network \textbf{G} is defined as:
 \begin{eqnarray}
 &&E_{loc}(G, i)=\frac{1}{N} \sum_{i \in \textbf{G}} E_{glob}(\textbf{G}_i)
 \end{eqnarray}
 
-Therefore it can be seen that the local efficiency is related to the clustering coefficient.
+Therefore it can be seen that the local efficiency is related to the clustering coefficient, which can help recognise the property of small-world for a network.
 
 \section{Assortativity and degree correlations}
+The assortativity is a correlation coefficient between the degrees of all nodes on two opposite ends of an edge. A positive assortativity value indicates that nodes tend to link to other nodes with the same or similar degree.
 
-The phenomenon of assortative~\cite{newman2002assortative} mixing can be quantified by means of an assortative
-coefficient. Let $E_{ij}$ be the number of edges in the network that connect
-a vertex of type $i$ to one of type $j$, with $i, j=1, . . . , n$, then similar in spirit to the
-adjacency matrix for vertices, these edges can be represented in the form of an edge
+The phenomenon of assortative~\cite{newman2002assortative} mixing can be quantified by means of an assortative coefficient. Let $E_{ij}$ be the number of edges in the network that connect a vertex of type $i$ to one of type $j$, with $i, j=1, . . . , n$, then similar in spirit to the adjacency matrix for vertices, these edges can be represented in the form of an edge
 incidence matrix $\mathbf{E}$, with elements $E_{ij}$. A normalized mixing matrix is defined as follows:
 \begin{eqnarray}
 &&\mathbf{e}=\frac{\mathbf{E}}{\|\mathbf{E}\|},
