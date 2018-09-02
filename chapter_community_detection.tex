@@ -11,7 +11,7 @@ While there are many methods to identify communities in undirected graphs, the c
 Q=(\textit{fraction of intra-community edges}) - (\textit{expected fraction of such edges})
 \end{eqnarray}
 
-It signifies that a community is figured when the number of edges inside the community is more than the expected number on the basis of chance. As a result, modularity-based community detection maximised intra-community density and minimised inter-community density. While the complexity of modularity optimisation is NP-complete problem, this paper uses the spectral optimisation methodology, which finds the best partition of the directed US stock network by the following expression of $Q$:
+It signifies that a community is figured when the number of edges inside the community is more than the expected number on the basis of chance. As a result, modularity-based community detection maximised intra-community density and minimised inter-community density. While the complexity of modularity optimisation is NP-complete problem, this thesis uses the spectral optimisation methodology, which finds the best partition of the directed US stock network by the following expression of $Q$:
 \begin{eqnarray}
 Q=\frac{1}{m}\sum_{ij}{\left[A_{ij}-\frac{k_i^{\text{in}}k_j^{out}}{m}\right]}\delta_{c_i,c_j}
 \end{eqnarray}
