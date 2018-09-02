@@ -31,12 +31,10 @@ from preprocess_stocks import lst_tickers_stp, LENTCKR, LENTRGL, df_codes_and_ti
 sns.set(color_codes=True)
 data_dir = ROOTPATH + r'/Codes'
 
-# function for generating PGD
 def genPureDedirectedGraph(theta_1, theta_2, mat_1, mat_2):
     G = nx.DiGraph()
     G.add_nodes_from(lst_tickers_stp)
     for i in lst_tickers_stp:
-        #print(i, end=' ')
         matidx_i = EIO_industry_BEA_code_list.index(
             df_codes_and_title.loc[i, 'BEA'])
         for j in lst_tickers_stp:
@@ -62,8 +60,6 @@ def genWDGraphFromPureDirectedGraph(PGD, return_list, threshold=-1):
             if corr >= threshold: G.add_edge(n, nbr, corr=corr)
     return G
 
-# function for generating PCGD
-# generate partial correlation directed graph
 def genPartCorrGraph(UGD):
     G = nx.DiGraph()
     G.add_nodes_from(lst_tickers_stp)
@@ -72,8 +68,6 @@ def genPartCorrGraph(UGD):
             G.add_edge(n, nbr, weight=eattr['corr'])
     return G
 
-# function for generating ECGU
-# generate entire correlation undirected graph
 def genEntCorrGraph():
     G = nx.Graph()
     G.add_nodes_from(lst_tickers_stp)
@@ -109,36 +103,6 @@ def _pd(d, p0, beta):
     return beta*p0 + (d <= p0)*(1-beta)
 
 def watts_strogatz(L, p0, beta, directed=False, rngseed=1):
-    """
-    Watts-Strogatz model of a small-world network
-
-    This generates the full adjacency matrix, which is not a good way to store
-    things if the network is sparse.
-
-    Parameters
-    ----------
-    L        : int
-               Number of nodes.
- 
-    p0       : float
-               Edge density. If K is the average degree then p0 = K/(L-1).
-               For directed networks "degree" means out- or in-degree.
- 
-    beta     : float
-               "Rewiring probability."
- 
-    directed : bool
-               Whether the network is directed or undirected.
- 
-    rngseed  : int
-               Seed for the random number generator.
- 
-    Returns
-    -------
-    A        : (L, L) array
-               Adjacency matrix of a WS (potentially) small-world network.
- 
-    """
     rng = np.random.RandomState(rngseed)
 
     d = _distance_matrix(L)
@@ -149,9 +113,9 @@ def watts_strogatz(L, p0, beta, directed=False, rngseed=1):
         np.fill_diagonal(A, 0)
     else:
         upper = np.triu_indices(L, 1)
- 
-        A          = np.zeros_like(p, dtype=int)
-        A[upper]   = 1*(rng.rand(len(upper[0])) < p[upper])
+
+        A = np.zeros_like(p, dtype=int)
+        A[upper] = 1*(rng.rand(len(upper[0])) < p[upper])
         A.T[upper] = A[upper]
 
     return A
@@ -208,7 +172,6 @@ def genEdgeDensity(lst, bins=100):
     LENLST_FLOAT = np.float(len(lst))
     for theta in theta_thresholds:
         n += 1
-        #print(n, end=' ')
         edge_densities.append(sum(corr >= theta for corr in lst)/LENLST_FLOAT)
     return theta_thresholds, edge_densities
 
@@ -220,9 +183,7 @@ def combineThresholds(thresholds_1, thresholds_2, mat_1, mat_2):
         index=range(len(thresholds_1)*len(thresholds_2)),
         columns=['theta_DR', 'theta_DD', 'no_directions'])
     idx = 0
-    print(len(thresholds_1), end='')
     for t1 in thresholds_1:
-        print('.', end='')
         exceeded = False
         for t2 in thresholds_2:
             cnt = 0
@@ -246,17 +207,16 @@ def combineThresholdsOfEIOAndCorrForAmtOfEdges(thresholds_eio, thresholds_corr, 
     idx = 0
     numrow = 0
     for t1 in thresholds_eio:
-        print('[%s]' % numrow)
         exceeded = False
         for t2 in thresholds_corr:
             cnt = 0
             if not exceeded:
                 for n, nbrs in FG.adj.items():
                     for nbr, eattr in nbrs.items():
-                        if ('direct_requirement' in eattr and eattr['direct_requirement'] > t1) or ('direct_demand' in eattr and (eattr['direct_demand'] > t1)):
+                        if ('direct_requirement' in eattr and eattr['direct_requirement'] > t1) or
+                            ('direct_demand' in eattr and (eattr['direct_demand'] > t1)):
                             if eattr['corr'] > t2: cnt += 1
                 if cnt == 0: exceeded = True
-            print(cnt, end=' ')
             df.iloc[idx,:] = [t1, t2, cnt]
             idx += 1
         numrow += 1
@@ -274,16 +234,14 @@ def combineThresholdsOfEIOAndCorrForIsWeaklyConnected(thresholds_eio, thresholds
             G.add_nodes_from(lst_tickers_stp)
             for n, nbrs in FG.adj.items():
                 for nbr, eattr in nbrs.items():
-                    if ('direct_requirement' in eattr and eattr['direct_requirement'] > t1) or ('direct_demand' in eattr and (eattr['direct_demand'] > t1)):
+                    if ('direct_requirement' in eattr and eattr['direct_requirement'] > t1) or
+                        ('direct_demand' in eattr and (eattr['direct_demand'] > t1)):
                         if eattr['corr'] > t2: G.add_edge(n, nbr)
             G = rmvIndepNodesFromGraph(G)
-            print(G.number_of_nodes(), end=' ')
             if G.number_of_nodes() > 0:
-                is_weakly_c = nx.is_weakly_connected(G)  
-                print(is_weakly_c, end=' ')
+                is_weakly_c = nx.is_weakly_connected(G)
                 df.iloc[idx,:] = [t1, t2, is_weakly_c]
             else:
-                print('Nill', end=' ')
                 df.iloc[idx,:] = [t1, t2, False]
             idx += 1
     return df
@@ -294,7 +252,6 @@ def continueCombineThresholdsOfEIOAndCorrForIsWeaklyConnected(thresholds_eio, th
     idx = start_point
     cnt = 0
     for t1 in thresholds_eio:
-        print('[%s]' % cnt)
         for t2 in thresholds_corr:
             if i < start_point:
                 i += 1
@@ -303,20 +260,18 @@ def continueCombineThresholdsOfEIOAndCorrForIsWeaklyConnected(thresholds_eio, th
             G.add_nodes_from(lst_tickers_stp)
             for n, nbrs in FG.adj.items():
                 for nbr, eattr in nbrs.items():
-                    if ('direct_requirement' in eattr and eattr['direct_requirement'] > t1) or ('direct_demand' in eattr and (eattr['direct_demand'] > t1)):
+                    if ('direct_requirement' in eattr and eattr['direct_requirement'] > t1) or
+                        ('direct_demand' in eattr and (eattr['direct_demand'] > t1)):
                         if eattr['corr'] > t2: G.add_edge(n, nbr)
             G = rmvIndepNodesFromGraph(G)
-            print(G.number_of_nodes(), end=' ')
             if G.number_of_nodes() > 0:
-                is_weakly_c = nx.is_weakly_connected(G)  
-                print(is_weakly_c, end=' ')
+                is_weakly_c = nx.is_weakly_connected(G)
                 df.iloc[idx,:] = [t1, t2, is_weakly_c]
             else:
-                print('Nill', end=' ')
                 df.iloc[idx,:] = [t1, t2, False]
             idx += 1
         cnt += 1
-        
+
 FILE_EIO_2016 = ROOTPATH + '/Source/lxl/EIO_2016.csv'
 EIO_matrix = np.matrix(np.genfromtxt(open(FILE_EIO_2016, 'rb'), delimiter=',', skip_header=2))
 EIO_industry_BEA_code_list = list(pd.read_csv(FILE_EIO_2016, nrows=0).columns)[:-2]
@@ -325,7 +280,7 @@ FILE_STOCK_ABR = ROOTPATH + r'/Source/DF_STOCK_ABR.csv'
 df_stock_abr = pd.read_csv(FILE_STOCK_ABR).set_index('Date')
 df_stock_normal_return = pd.DataFrame(index=df_stock_abr.index, columns=df_stock_abr.columns)
 for i in DICT_STP: df_stock_normal_return[i] = DICT_STP[i]['log_return']
-    
+
 EIO_direct_requirements_matrix = genEIODirectMatrix('requirements', tradeoff=True, to_log=True)
 EIO_direct_demands_matrix = genEIODirectMatrix('demands', tradeoff=True, to_log=True)
 
@@ -358,14 +313,16 @@ ax.set_xlabel('threshold')
 ax.set_ylabel('Transaction density')
 ax.set_xlim(left=-0.05, right=1.2)
 ax.set_title('Normalised Direct Requirement', fontsize='large')
-dashed_line = Line2D([x_dashline, x_dashline], [-1.05, 1.05], linestyle = '--', linewidth = 1, color = [0.3,0.3,0.3], zorder = 1, transform = ax.transData)
+dashed_line = Line2D([x_dashline, x_dashline], [-1.05, 1.05], linestyle = '--',
+    linewidth = 1, color = [0.3,0.3,0.3], zorder = 1, transform = ax.transData)
 ax.lines.append(dashed_line)
 ax.plot(b2, b1, color='blue', lw=2)
 ax = fig.add_subplot(2,1,2)
 ax.set_xlabel('threshold')
 ax.set_ylabel('Transaction density')
 ax.set_title('Normalised Direct Demand', fontsize='large')
-dashed_line = Line2D([x_dashline, x_dashline], [-0.05, 1.05], linestyle = '--', linewidth = 1, color = [0.3,0.3,0.3], zorder = 1, transform = ax.transData)
+dashed_line = Line2D([x_dashline, x_dashline], [-0.05, 1.05], linestyle = '--',
+    linewidth = 1, color = [0.3,0.3,0.3], zorder = 1, transform = ax.transData)
 ax.lines.append(dashed_line)
 ax.set_xlim(left=-0.05, right=1.2)
 ax.plot(b2, b1, color='blue', lw=2)
@@ -391,7 +348,6 @@ def genFullGraph(stock_return_df):
     G = nx.DiGraph()
     G.add_nodes_from(lst_tickers_stp)
     for i in lst_tickers_stp:
-        #print(i, end=' ')
         matidx_i = EIO_industry_BEA_code_list.index(df_codes_and_title.loc[i, 'BEA'])
         S1 = stock_return_df[i]
         for j in lst_tickers_stp:
@@ -413,7 +369,7 @@ for n, nbrs in FullG.adj.items():
             direct_requirements_CN.append(eattr['direct_requirement'])
         if 'direct_demand' in eattr.keys():
             direct_demands_CN.append(eattr['direct_demand'])
-            
+
 corr_coef_CN = []
 for n, nbrs in FullG.adj.items():
     for nbr, eattr in nbrs.items():
@@ -472,7 +428,7 @@ else:
     pt_cteac = pd.DataFrame(ar_cteac)
     pt_cteac.columns = npzfile['col']
     pt_cteac.index = npzfile['ind']
-    
+
 f, ax = plt.subplots(figsize = (10, 4))
 sns.heatmap(pt_cteac.iloc[5:50,20:90], cmap='rainbow', linewidths = 0.05, ax = ax)
 ax.set_title('Amounts of directions per DR-threshold and DD-threshold')
@@ -500,7 +456,7 @@ else:
     pt_toeacfaoe = pd.DataFrame(ar_cteac)
     pt_toeacfaoe.columns = npzfile['col']
     pt_toeacfaoe.index = npzfile['ind']
-    
+
 pt_toeacfaoe.index = [round(i, 4) for i in pt_toeacfaoe.index]
 pt_toeacfaoe.columns = [round(i, 4) for i in pt_toeacfaoe.columns]
 
@@ -512,8 +468,8 @@ ax.set_ylabel(r'$\theta_{EIO}$');
 threshold_eio = 0.29225
 threshold_corr = 0.378705
 DiUnwtG = genPureDedirectedGraph(
-    threshold_eio, #0.35
-    threshold_eio, #0.35
+    threshold_eio,
+    threshold_eio,
     EIO_direct_requirements_matrix,
     EIO_direct_demands_matrix)
 
@@ -591,9 +547,7 @@ p = noedges / nonodes / (nonodes-1)
 G_rd = nx.generators.gnp_random_graph(nonodes, p=p, directed=True)
 G_rd.number_of_edges()
 
-def calGlobalEfficiency(G, lst_nodes, N): #N = 0, 
-    #if N == 0: N = G.number_of_nodes()
-    #if lst_nodes == None: lst_nodes = G.nodes()
+def calGlobalEfficiency(G, lst_nodes, N):
     shortest_path = nx.shortest_path(G)
     acc = 0.0
     for i in lst_nodes:
@@ -607,12 +561,9 @@ def calLocalEfficiency(G):
     lst_nodes = G.nodes()
     acc = 0.0
     for i in lst_nodes:
-        print(i, end='')
         nodes_g = list(UndiG[i])
         n = len(nodes_g)
         if n > 0:
-            #nodes_g.append(i)
-            print('(%s)'%n, end=' ')
             acc += calGlobalEfficiency(G.subgraph(nodes_g), nodes_g, n)
     return acc/G.number_of_nodes()
 
@@ -627,41 +578,29 @@ def detectCommunityForDirectedGraph(G):
     NOINDEGREES = G.in_degree()
     NOOUTDEGREES = G.out_degree()
     overall_asgn = [(0, 0)] * NONODES
-    
+
     def getNodeSpace(node_space, upd_asgn, val):
         return [node_space[i] for i in range(len(upd_asgn)) if upd_asgn[i] == val]
-    '''
-    def fineTune(node_space, upd_asgn):
-        nonlocal G
-        nonlocal overall_asgn
-        nonlocal NONODES
-        for i in upd_asgn:
-            for j in node_space:
-'''
     def interateBisection(mod_mat, node_space, generation_mark):
         nonlocal G
         nonlocal overall_asgn
         upd_asgn = subdivideCommunities(mod_mat)
-        # todo: fine-tune
-        
+
         if len(np.unique(upd_asgn)) == 1: return
         delta_Q = calDeltaQ(upd_asgn, mod_mat)
-        print('calDeltaQ: %s' % delta_Q)
         if delta_Q < 0: return
         node_space_1 = getNodeSpace(node_space, upd_asgn, -1)
         if len(node_space_1) == 0: return
         updCommunityAssignment(node_space_1, upd_asgn, generation_mark)
-        print('genGeneralisedModularityMatrix_1: %s:%s:%s' % (time.localtime()[3],time.localtime()[4],time.localtime()[5]))
         mod_mat_1 = genGeneralisedModularityMatrix(node_space_1)
         interateBisection(mod_mat_1, node_space_1, generation_mark+1)
         node_space_2 = getNodeSpace(node_space, upd_asgn, 1)
         if len(node_space_2) == 0: return
         updCommunityAssignment(node_space_2, upd_asgn, generation_mark)
-        print('genGeneralisedModularityMatrix_2: %s:%s:%s' % (time.localtime()[3],time.localtime()[4],time.localtime()[5]))
         mod_mat_2 = genGeneralisedModularityMatrix(node_space_2)
         interateBisection(mod_mat_2, node_space_2, generation_mark+1)
         return
-    
+
     def genGeneralisedModularityMatrix(node_space):# Subgraph
         nonlocal G
         nonlocal lst_node
@@ -672,7 +611,6 @@ def detectCommunityForDirectedGraph(G):
         LENNODESPECE = len(node_space)
         mod_mat = np.matrix(np.zeros((LENNODESPECE, LENNODESPECE), dtype=np.float64))
         for i in range(LENNODESPECE):
-            print(i, end=' ')
             tckr_i = lst_node[node_space[i]]
             for j in range(LENNODESPECE):
                 tckr_j = lst_node[node_space[j]]
@@ -681,12 +619,12 @@ def detectCommunityForDirectedGraph(G):
                     Ck = 0.0
                     for k in node_space:
                         tckr_k = lst_node[k]
-                        Ck += G.has_edge(tckr_k, tckr_i) + G.has_edge(tckr_i, tckr_k) - (NOINDEGREES[tckr_i] * NOOUTDEGREES[tckr_k] + NOINDEGREES[tckr_k] * NOOUTDEGREES[tckr_i]) / NOEDGES
+                        Ck += G.has_edge(tckr_k, tckr_i) + G.has_edge(tckr_i, tckr_k) - (NOINDEGREES[tckr_i] *
+                            NOOUTDEGREES[tckr_k] + NOINDEGREES[tckr_k] * NOOUTDEGREES[tckr_i]) / NOEDGES
                     mod_mat[i, j] = Bij - Ck / 2.0
                 else: mod_mat[i, j] = Bij
-        print('/')
         return mod_mat
-    
+
     def updCommunityAssignment(node_space, upd_asgn, generation_mark):
         nonlocal overall_asgn
         global asgn_history
@@ -709,15 +647,14 @@ def detectCommunityForDirectedGraph(G):
         for i in range(len(node_space)):
             if upd_asgn[i] == 1: overall_asgn[node_space[i]] = (generation_mark, inreval_1)
             if upd_asgn[i] == -1: overall_asgn[node_space[i]] = (generation_mark, inreval_2)
-        #print(overall_asgn)
         asgn_history.append(overall_asgn.copy())
-    
+
     def subdivideCommunities(mod_mat):
         sym_mat = mod_mat + mod_mat.T
         w, v = np.linalg.eigh(sym_mat)
         eigv = v[:, len(w)-1]
         return [np.sign(v.tolist()[0][0]) for v in eigv]
-        
+
     def calDirectedGraphModularity(assignment):
         nonlocal G
         nonlocal lst_node
@@ -731,12 +668,12 @@ def detectCommunityForDirectedGraph(G):
                 if assignment[i] == assignment[j]:
                     Q += G.has_edge(lst_node[j], lst_node[i]) - NOINDEGREES[lst_node[i]] * NOOUTDEGREES[lst_node[j]] / NOEDGES
         return Q / NOEDGES
-    
+
     def calDeltaQ(upd_asgn, Bg):
         nonlocal NOEDGES
         sg = np.matrix(upd_asgn)
         return 0.25/NOEDGES*np.dot(np.dot(sg, (Bg+Bg.T)), sg.T)[0,0]
-    
+
     MODMAT = np.matrix(np.zeros((NONODES, NONODES), dtype=np.float64))
     for i in range(NONODES):
         for j in range(NONODES):
@@ -767,7 +704,7 @@ NOOUTDEGREES = G.out_degree()
 over_best_asgn = [0] * len(lst_tickers_stp)
 for i in range(len(lst_tickers_stp)):
     over_best_asgn[i] = int(G.node[lst_tickers_stp[i]]['community'])
-    
+
 best_asgn = over_best_asgn.copy()
 origin_mod = calModularity(best_asgn)
 for i in range(len(best_asgn)):
@@ -824,19 +761,19 @@ lst_community_4 = []
 lst_community_5 = []
 lst_community_6 = []
 for ind in uniq_ind:
-    if ind in sri_community_1.index: lst_community_1.append(sri_community_1[ind]) #/ sum(sri_overall_asgn == v_c.index[0]))
+    if ind in sri_community_1.index: lst_community_1.append(sri_community_1[ind])
     else: lst_community_1.append(0)
-    if ind in sri_community_2.index: lst_community_2.append(sri_community_2[ind]) #/ sum(sri_overall_asgn == v_c.index[1]))
+    if ind in sri_community_2.index: lst_community_2.append(sri_community_2[ind])
     else: lst_community_2.append(0)
-    if ind in sri_community_3.index: lst_community_3.append(sri_community_3[ind]) #/ sum(sri_overall_asgn == v_c.index[2]))
+    if ind in sri_community_3.index: lst_community_3.append(sri_community_3[ind])
     else: lst_community_3.append(0)
-    if ind in sri_community_4.index: lst_community_4.append(sri_community_4[ind]) #/ sum(sri_overall_asgn == v_c.index[3]))
+    if ind in sri_community_4.index: lst_community_4.append(sri_community_4[ind])
     else: lst_community_4.append(0)
-    if ind in sri_community_5.index: lst_community_5.append(sri_community_5[ind]) #/ sum(sri_overall_asgn == v_c.index[4]))
+    if ind in sri_community_5.index: lst_community_5.append(sri_community_5[ind])
     else: lst_community_5.append(0)
-    if ind in sri_community_6.index: lst_community_6.append(sri_community_6[ind]) #/ sum(sri_overall_asgn == v_c.index[5]))
+    if ind in sri_community_6.index: lst_community_6.append(sri_community_6[ind])
     else: lst_community_6.append(0)
-        
+
 lst2_sector = [None] * len(uniq_ind)
 for i in range(len(uniq_ind)):
     lst2_sector[i] = []
@@ -852,7 +789,7 @@ for i in range(len(uniq_ind)):
     else: lst2_sector[i].append(0)
     if uniq_ind[i] in sri_community_6.index: lst2_sector[i].append(sri_community_6[uniq_ind[i]])
     else: lst2_sector[i].append(0)
-        
+
 idx = np.arange(6)
 plt.figure(figsize=(15,15))
 
@@ -871,12 +808,15 @@ plt.figure(figsize=(15,15))
 p1 = plt.bar(idx, lst_community_1, color=(0.85, 0.5176, 1))
 p2 = plt.bar(idx, lst_community_2, bottom=lst_community_1, color=(0.553, 0.753, 0.0863))
 p3 = plt.bar(idx, lst_community_3,
-             bottom=np.array(lst_community_1)+np.array(lst_community_2), color=(0.4157, 0.7608, 1))
+             bottom = np.array(lst_community_1) + np.array(lst_community_2), color = (0.4157, 0.7608, 1))
 p4 = plt.bar(idx, lst_community_4,
-             bottom=np.array(lst_community_1)+np.array(lst_community_2)+np.array(lst_community_3), color=[0.937255,0.851,0.25333])
+             bottom = np.array(lst_community_1) + np.array(lst_community_2) + np.array(lst_community_3), color = [0.937255,0.851,0.25333])
 p5 = plt.bar(idx, lst_community_5,
-             bottom=np.array(lst_community_1)+np.array(lst_community_2)+np.array(lst_community_3)+np.array(lst_community_4), color=[0.898,0.5294,0.1294])
+             bottom = np.array(lst_community_1) + np.array(lst_community_2)+np.array(lst_community_3) +
+             np.array(lst_community_4), color = [0.898,0.5294,0.1294])
 p6 = plt.bar(idx, lst_community_6,
-             bottom=np.array(lst_community_1)+np.array(lst_community_2)+np.array(lst_community_3)+np.array(lst_community_4)+np.array(lst_community_5), color=[0.283,0.2823,0.282])
+             bottom = np.array(lst_community_1) + np.array(lst_community_2) + np.array(lst_community_3) +
+             np.array(lst_community_4) + np.array(lst_community_5), color = [0.283,0.2823,0.282])
 plt.xticks(idx, uniq_ind, rotation=90)
-plt.legend((p1[0], p2[0], p3[0], p4[0], p5[0], p6[0]), ('Community 1', 'Community 2', 'Community 3', 'Community 4', 'Community 5', 'Unclustered'));
+plt.legend((p1[0], p2[0], p3[0], p4[0], p5[0], p6[0]), ('Community 1', 'Community 2',
+    'Community 3', 'Community 4', 'Community 5', 'Unclustered'));
